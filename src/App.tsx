@@ -8,6 +8,7 @@ import Conferences from "./pages/Conferences.tsx";
 import ConferenceDetail from "./pages/ConferenceDetail.tsx";
 import Login from "./pages/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import OrganizerDashboard from "./pages/OrganizerDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/conference/:id" element={<ConferenceDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/organizer-dashboard" element={<OrganizerDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
