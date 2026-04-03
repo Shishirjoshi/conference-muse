@@ -8,6 +8,7 @@ import Conferences from "./pages/Conferences.tsx";
 import ConferenceDetail from "./pages/ConferenceDetail.tsx";
 import Login from "./pages/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import OrganizerDashboard from "./pages/OrganizerDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
