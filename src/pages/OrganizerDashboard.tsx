@@ -68,7 +68,7 @@ const OrganizerDashboard = () => {
                   <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1"><Calendar size={12} /> {conference.date}</span>
                     <span className="flex items-center gap-1"><MapPin size={12} /> {conference.location}</span>
-                    <span className="flex items-center gap-1"><Users size={12} /> {conference.attendees} attendees</span>
+                    <span className="flex items-center gap-1"><Users size={12} /> {conference.capacity} capacity</span>
                   </div>
                 </div>
               </div>
