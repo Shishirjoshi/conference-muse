@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/conference/:id" element={<ConferenceDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/organizer-dashboard" element={<OrganizerDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
