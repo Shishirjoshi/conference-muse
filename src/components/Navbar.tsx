@@ -3,6 +3,7 @@ import { Menu, X, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import { logoSrc } from "@/lib/logo";
 
 interface NavLink {
   label: string;
@@ -38,13 +39,12 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <span className="font-heading text-sm font-bold text-primary-foreground">E</span>
-          </div>
-          <span className="font-heading text-lg font-semibold text-foreground">
-            Eventix
-          </span>
+        <Link to="/" className="flex items-center gap-3">
+          <img
+            src={logoSrc}
+            alt="Eventix logo"
+            className="h-14 max-w-[180px] w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop */}

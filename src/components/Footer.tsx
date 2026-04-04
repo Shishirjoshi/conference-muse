@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { logoSrc } from "@/lib/logo";
 
 const Footer = () => {
   return (
@@ -51,11 +52,8 @@ const Footer = () => {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                  <span className="font-heading text-sm font-bold text-primary-foreground">E</span>
-                </div>
-                <span className="font-heading text-xl font-semibold text-foreground">Eventix</span>
+                <div className="mb-4">
+                <img src={logoSrc} alt="Eventix logo" className="h-12 w-auto" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                 Experience a powerful gathering of visionaries, creators, and industry experts united by one goal—exchanging ideas that spark growth, innovation, and meaningful change.
@@ -67,7 +65,7 @@ const Footer = () => {
               <h4 className="font-heading font-semibold text-foreground mb-6">Quick Links</h4>
               <div className="flex flex-col gap-3">
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</Link>
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">Conferences</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Events</Link>
                 <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors">Dashboard</Link>
                 <Link to="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors">Login</Link>
               </div>
@@ -77,11 +75,11 @@ const Footer = () => {
             <div>
               <h4 className="font-heading font-semibold text-foreground mb-6">Schedules</h4>
               <div className="flex flex-col gap-3">
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">Future Finance</Link>
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">Tech Innovators</Link>
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">Sustainable Business</Link>
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">International Productivity</Link>
-                <Link to="/conferences" className="text-sm text-muted-foreground hover:text-primary transition-colors">Creative Entrepreneurship</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Future Finance</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Tech Innovators</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Sustainable Business</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">International Productivity</Link>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">Creative Entrepreneurship</Link>
               </div>
             </div>
 

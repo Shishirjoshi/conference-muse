@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { conferences } from "@/data/conferences";
+import { events } from "@/data/events";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -184,7 +184,7 @@ const OrganizerDashboard = () => {
     setError('');
   };
 
-  const myConferences = conferences.slice(0, 3);
+  const myConferences = events.slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -368,7 +368,7 @@ const OrganizerDashboard = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Link to={`/conference/${conference.id}`}>
+                      <Link to={`/event/${conference.id}`}>
                         <Button variant="outline" size="sm" className="rounded-full gap-2 px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200">
                           <Eye size={14} /> View
                         </Button>

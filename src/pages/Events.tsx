@@ -117,4 +117,4 @@ const Events = () => {
   );
 };
 
-export default Conferences;
+export default Events;

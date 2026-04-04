@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { conferences } from "@/data/conferences";
+import { events } from "@/data/events";
 import { useAuth } from "@/hooks/useAuth";
 
 interface Booking {
@@ -46,8 +46,8 @@ const Dashboard = () => {
   };
 
   const userBookings = bookings.map(booking => {
-    const conference = conferences.find(c => c.id.toString() === booking.conference_id);
-    return conference ? { conference, status: booking.status } : null;
+    const event = events.find(c => c.id.toString() === booking.conference_id);
+    return event ? { conference: event, status: booking.status } : null;
   }).filter(Boolean);
 
   const confirmedCount = bookings.filter(b => b.status === 'confirmed').length;
@@ -95,10 +95,10 @@ const Dashboard = () => {
           <div className="rounded-xl border border-border bg-card p-12 shadow-card text-center">
             <Calendar size={64} className="text-muted-foreground/30 mb-6 mx-auto" />
             <p className="text-2xl font-semibold text-foreground mb-3">No bookings yet</p>
-            <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">Explore conferences to get started and never miss an event!</p>
-            <Link to="/conferences">
+            <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">Explore events to get started and never miss an experience!</p>
+            <Link to="/events">
               <Button className="rounded-full px-8 py-3 text-lg hover:bg-primary/90 transition-colors duration-200">
-                Browse Conferences
+                Browse Events
               </Button>
             </Link>
           </div>
@@ -137,7 +137,7 @@ const Dashboard = () => {
                       {status === "confirmed" ? <CheckCircle size={12} /> : <Clock size={12} />}
                       {status.charAt(0).toUpperCase() + status.slice(1)}
                     </span>
-                    <Link to={`/conference/${conference.id}`}>
+                    <Link to={`/event/${conference.id}`}>
                       <Button variant="outline" size="sm" className="rounded-full text-xs">
                         View
                       </Button>
@@ -151,13 +151,13 @@ const Dashboard = () => {
 
         {/* Recommended */}
         <h2 className="font-heading text-xl font-semibold text-foreground mt-12 mb-4">
-          Explore More Conferences
+          Explore More Events
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {conferences.slice(0, 6).map((conf) => (
+          {events.slice(0, 6).map((conf) => (
             <Link
               key={conf.id}
-              to={`/conference/${conf.id}`}
+              to={`/event/${conf.id}`}
               className="group rounded-xl border border-border bg-card p-4 shadow-card transition-all hover:shadow-card-hover hover:-translate-y-0.5"
             >
               <img
