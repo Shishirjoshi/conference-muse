@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n✓ Conference Muse Auth Server running on http://localhost:${PORT}`);
+  console.log(`\n✓ Eventix Auth Server running on http://localhost:${PORT}`);
   console.log(`\nDemo credentials:`);
   console.log('  Email: admin@conference.com');
   console.log('  Password: admin123');

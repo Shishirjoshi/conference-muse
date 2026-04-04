@@ -40,10 +40,10 @@ const Navbar = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <span className="font-heading text-sm font-bold text-primary-foreground">CH</span>
+            <span className="font-heading text-sm font-bold text-primary-foreground">E</span>
           </div>
           <span className="font-heading text-lg font-semibold text-foreground">
-            ConferenceHub
+            Eventix
           </span>
         </Link>
 

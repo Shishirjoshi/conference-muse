@@ -46,7 +46,7 @@ const Login = () => {
                 Welcome Back
               </h1>
               <p className="text-muted-foreground mb-8">
-                Sign in to your ConferenceHub account
+                Sign in to your Eventix account
               </p>
             </div>
 

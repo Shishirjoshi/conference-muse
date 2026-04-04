@@ -53,9 +53,9 @@ const Footer = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                  <span className="font-heading text-sm font-bold text-primary-foreground">CH</span>
+                  <span className="font-heading text-sm font-bold text-primary-foreground">E</span>
                 </div>
-                <span className="font-heading text-xl font-semibold text-foreground">ConferenceHub</span>
+                <span className="font-heading text-xl font-semibold text-foreground">Eventix</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                 Experience a powerful gathering of visionaries, creators, and industry experts united by one goal—exchanging ideas that spark growth, innovation, and meaningful change.
