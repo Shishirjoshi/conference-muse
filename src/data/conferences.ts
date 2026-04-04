@@ -2,6 +2,7 @@ export interface Speaker {
   name: string;
   role: string;
   avatar: string;
+  image?: string;
 }
 
 export interface ScheduleItem {
@@ -20,6 +21,8 @@ export interface Conference {
   description: string;
   longDescription: string;
   image: string;
+  bannerImage?: string;
+  galleryImages?: string[];
   speakers: Speaker[];
   schedule: ScheduleItem[];
 }
@@ -35,10 +38,17 @@ export const conferences: Conference[] = [
     description: "Explore the cutting-edge advancements in artificial intelligence with world-class researchers.",
     longDescription: "Join 2,000+ innovators, researchers, and industry leaders for two days of deep-dive sessions into generative AI, machine learning infrastructure, and ethical AI governance. Featuring hands-on workshops, live demos, and networking events.",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=400&fit=crop"
+    ],
     speakers: [
-      { name: "Dr. Sarah Chen", role: "AI Research Lead, DeepMind", avatar: "SC" },
-      { name: "James Mitchell", role: "CTO, NeuralPath", avatar: "JM" },
-      { name: "Priya Sharma", role: "ML Engineer, OpenAI", avatar: "PS" },
+      { name: "Dr. Sarah Chen", role: "AI Research Lead, DeepMind", avatar: "SC", image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" },
+      { name: "James Mitchell", role: "CTO, NeuralPath", avatar: "JM", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" },
+      { name: "Priya Sharma", role: "ML Engineer, OpenAI", avatar: "PS", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" },
     ],
     schedule: [
       { time: "9:00 AM", title: "Registration & Breakfast" },
@@ -60,9 +70,16 @@ export const conferences: Conference[] = [
     description: "Learn how top companies build and scale design systems for consistency and speed.",
     longDescription: "A two-day immersive experience into the world of design systems. Learn from teams at Spotify, Airbnb, and Google as they share practical strategies for building, maintaining, and evolving design systems at scale.",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=600&fit=crop",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop"
+    ],
     speakers: [
-      { name: "Emma Liu", role: "Design Lead, Spotify", avatar: "EL" },
-      { name: "Marcus Johnson", role: "Sr. Designer, Airbnb", avatar: "MJ" },
+      { name: "Emma Liu", role: "Design Lead, Spotify", avatar: "EL", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face" },
+      { name: "Marcus Johnson", role: "Sr. Designer, Airbnb", avatar: "MJ", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
     ],
     schedule: [
       { time: "9:30 AM", title: "Doors Open" },
@@ -83,10 +100,17 @@ export const conferences: Conference[] = [
     description: "Deep dive into Kubernetes, microservices, and cloud-native architecture patterns.",
     longDescription: "Three days of intensive learning about cloud-native technologies. From Kubernetes operators to service mesh, from CI/CD pipelines to observability — everything you need to build resilient, scalable systems.",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=600&fit=crop",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop"
+    ],
     speakers: [
-      { name: "Alex Rivera", role: "Platform Eng, Google", avatar: "AR" },
-      { name: "Nina Kowalski", role: "DevOps Lead, HashiCorp", avatar: "NK" },
-      { name: "Raj Patel", role: "SRE, Netflix", avatar: "RP" },
+      { name: "Alex Rivera", role: "Platform Eng, Google", avatar: "AR", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" },
+      { name: "Nina Kowalski", role: "DevOps Lead, HashiCorp", avatar: "NK", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face" },
+      { name: "Raj Patel", role: "SRE, Netflix", avatar: "RP", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face" },
     ],
     schedule: [
       { time: "10:00 AM", title: "Welcome & Intro" },

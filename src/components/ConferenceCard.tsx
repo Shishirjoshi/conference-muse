@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Calendar, MapPin, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Conference } from "@/data/conferences";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface ConferenceCardProps {
   conference: Conference;
@@ -11,10 +12,11 @@ const ConferenceCard = ({ conference }: ConferenceCardProps) => {
   return (
     <div className="group rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 overflow-hidden">
       <div className="aspect-[2/1] overflow-hidden">
-        <img
+        <ImageWithFallback
           src={conference.image}
           alt={conference.title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
         />
       </div>
       <div className="p-8">

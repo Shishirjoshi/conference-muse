@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { Calendar, MapPin, Globe, ArrowLeft, Clock, User } from "lucide-react";
+import { Calendar, MapPin, Globe, ArrowLeft, Clock, User, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import { conferences } from "@/data/conferences";
 
 const ConferenceDetail = () => {
@@ -33,16 +34,32 @@ const ConferenceDetail = () => {
       <Navbar />
 
       {/* Banner */}
-      <div className="relative h-64 md:h-80 overflow-hidden">
-        <img src={conference.image} alt={conference.title} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <Link to="/conferences" className="inline-flex items-center gap-1 text-sm text-primary-foreground/80 hover:text-primary-foreground mb-3 transition-colors">
-            <ArrowLeft size={14} /> Back
+      <div className="relative h-80 md:h-96 overflow-hidden">
+        <ImageWithFallback
+          src={conference.bannerImage || conference.image}
+          alt={conference.title}
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute bottom-8 left-6 right-6">
+          <Link to="/conferences" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white mb-4 transition-colors">
+            <ArrowLeft size={16} /> Back to Conferences
           </Link>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight">
             {conference.title}
           </h1>
+          <div className="flex flex-wrap gap-4 mt-4">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-sm font-medium text-white">
+              <Calendar size={14} /> {conference.date}
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-sm font-medium text-white">
+              <MapPin size={14} /> {conference.location}
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 text-sm font-medium text-white">
+              <Globe size={14} /> {conference.mode}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -50,42 +67,63 @@ const ConferenceDetail = () => {
         <div className="grid gap-12 lg:grid-cols-3">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-12">
-            {/* Meta */}
-            <div className="flex flex-wrap gap-4">
-              <span className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary shadow-sm">
-                <Calendar size={14} /> {conference.date}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary shadow-sm">
-                <MapPin size={14} /> {conference.location}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm shadow-card">
-                <Globe size={14} className="text-primary" /> {conference.mode}
-              </span>
-            </div>
-
             {/* About */}
             <div>
               <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">About</h2>
-              <p className="text-muted-foreground leading-relaxed">{conference.longDescription}</p>
+              <p className="text-muted-foreground leading-relaxed text-lg">{conference.longDescription}</p>
             </div>
 
             {/* Speakers */}
             <div>
               <h2 className="font-heading text-2xl font-semibold text-foreground mb-6">Speakers</h2>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-6 sm:grid-cols-2">
                 {conference.speakers.map((speaker) => (
-                  <div key={speaker.name} className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 shadow-card">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-heading font-semibold">
-                      {speaker.avatar}
+                  <div key={speaker.name} className="flex items-center gap-6 rounded-xl border border-border bg-card p-6 shadow-card hover:shadow-card-hover transition-shadow duration-200">
+                    <div className="relative">
+                      {speaker.image ? (
+                        <ImageWithFallback
+                          src={speaker.image}
+                          alt={speaker.name}
+                          className="h-16 w-16 rounded-full object-cover border-2 border-primary/20"
+                          fallbackClassName="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20">
+                          <span className="font-heading font-semibold text-primary text-lg">{speaker.avatar}</span>
+                        </div>
+                      )}
                     </div>
                     <div>
-                      <p className="font-medium text-foreground">{speaker.name}</p>
-                      <p className="text-sm text-muted-foreground">{speaker.role}</p>
+                      <p className="font-semibold text-foreground text-lg">{speaker.name}</p>
+                      <p className="text-muted-foreground">{speaker.role}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Image Gallery */}
+            {conference.galleryImages && conference.galleryImages.length > 0 && (
+              <div>
+                <h2 className="font-heading text-2xl font-semibold text-foreground mb-6">Gallery</h2>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {conference.galleryImages.map((image, index) => (
+                    <div key={index} className="group relative aspect-square overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                      <ImageWithFallback
+                        src={image}
+                        alt={`${conference.title} - Image ${index + 1}`}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <ImageIcon size={24} className="text-white" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Schedule */}
             <div>
