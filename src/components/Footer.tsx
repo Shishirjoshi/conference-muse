@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { logoSrc } from "@/lib/logo";
 
 const Footer = () => {
   return (
@@ -59,8 +58,14 @@ const Footer = () => {
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 mb-16">
             {/* Brand */}
             <div>
-              <div className="mb-6 flex items-start">
-                <img src={logoSrc} alt="EventHub logo" className="h-12 w-auto object-contain" />
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-accent to-primary shadow-lg shadow-primary/20 ring-1 ring-white/10">
+                  <span className="font-heading text-base font-extrabold text-white leading-none tracking-tight">E</span>
+                </div>
+                <div className="flex flex-col leading-none">
+                  <span className="font-heading text-2xl font-extrabold tracking-tight gradient-text">EventHub</span>
+                  <span className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">Events that connect</span>
+                </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed font-medium">
                 A powerful gathering of visionaries and industry experts united by innovation, inspiring dialogue, and meaningful connections that spark transformation worldwide.

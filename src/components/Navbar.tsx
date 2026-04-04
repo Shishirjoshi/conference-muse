@@ -3,7 +3,6 @@ import { Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
-import { logoSrc } from "@/lib/logo";
 
 interface NavLink {
   label: string;
@@ -39,12 +38,14 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b border-border/20 bg-gradient-to-r from-card/95 to-card/90 backdrop-blur-xl shadow-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300 group">
-          <img
-            src={logoSrc}
-            alt="EventHub logo"
-            className="h-14 max-w-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-          />
+        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300 group">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-accent to-primary shadow-lg shadow-primary/20 ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-300">
+            <span className="font-heading text-lg font-extrabold text-white leading-none tracking-tight">E</span>
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="font-heading text-2xl font-extrabold tracking-tight gradient-text">EventHub</span>
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">Events that connect</span>
+          </div>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
