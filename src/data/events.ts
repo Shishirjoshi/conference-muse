@@ -11,7 +11,7 @@ export interface ScheduleItem {
   speaker?: string;
 }
 
-export interface Conference {
+export interface Event {
   id: string;
   title: string;
   date: string;
@@ -27,7 +27,7 @@ export interface Conference {
   schedule: ScheduleItem[];
 }
 
-export const conferences: Conference[] = [
+export const events: Event[] = [
   {
     id: "1",
     title: "Future of AI Summit 2026",

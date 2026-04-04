@@ -4,22 +4,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ConferenceCard from "@/components/ConferenceCard";
-import { conferences, categories } from "@/data/conferences";
+import EventCard from "@/components/EventCard";
+import { events, categories } from "@/data/events";
 
 const modes = ["All", "Online", "Offline", "Hybrid"];
 
-const Conferences = () => {
+const Events = () => {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedMode, setSelectedMode] = useState("All");
 
-  const filtered = conferences.filter((c) => {
+  const filtered = events.filter((e) => {
     const matchesSearch =
-      c.title.toLowerCase().includes(search.toLowerCase()) ||
-      c.location.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || c.category === selectedCategory;
-    const matchesMode = selectedMode === "All" || c.mode === selectedMode;
+      e.title.toLowerCase().includes(search.toLowerCase()) ||
+      e.location.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || e.category === selectedCategory;
+    const matchesMode = selectedMode === "All" || e.mode === selectedMode;
     return matchesSearch && matchesCategory && matchesMode;
   });
 
@@ -30,7 +30,7 @@ const Conferences = () => {
       <div className="container mx-auto px-6 py-20">
         <div className="mb-16 text-center">
           <h1 className="font-heading text-4xl font-bold text-foreground mb-4 md:text-5xl">
-            All Conferences
+            All Events
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Browse and filter events that match your interests
@@ -98,13 +98,13 @@ const Conferences = () => {
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-32 text-center">
                 <Search size={64} className="text-muted-foreground/30 mb-6" />
-                <p className="text-2xl font-semibold text-foreground mb-2">No conferences found</p>
+                <p className="text-2xl font-semibold text-foreground mb-2">No events found</p>
                 <p className="text-lg text-muted-foreground">Try adjusting your filters or search terms</p>
               </div>
             ) : (
               <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((conf) => (
-                  <ConferenceCard key={conf.id} conference={conf} />
+                {filtered.map((event) => (
+                  <EventCard key={event.id} event={event} />
                 ))}
               </div>
             )}

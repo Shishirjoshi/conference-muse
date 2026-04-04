@@ -3,12 +3,12 @@ import { ArrowRight, Users, Calendar, Globe, Play, Clock, Bell, MapPin } from "l
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ConferenceCard from "@/components/ConferenceCard";
-import { conferences } from "@/data/conferences";
+import EventCard from "@/components/EventCard";
+import { events } from "@/data/events";
 import { useState, useEffect } from "react";
 
 const Index = () => {
-  const upcoming = conferences.slice(0, 3);
+  const upcoming = events.slice(0, 3);
   const [timeLeft, setTimeLeft] = useState({
     days: 270,
     hours: 8,
@@ -107,7 +107,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight text-foreground mb-6 tracking-normal">
-              Explore the complete schedule for our event
+              Explore the complete schedule for our events
             </h2>
           </div>
 
@@ -122,12 +122,12 @@ const Index = () => {
 
           {/* Schedule Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {upcoming.map((conf) => (
-              <Link key={conf.id} to={`/conference/${conf.id}`} className="block group bg-white/60 backdrop-blur-md rounded-3xl overflow-hidden border border-white/30 hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 cursor-pointer">
+            {upcoming.map((event) => (
+              <Link key={event.id} to={`/event/${event.id}`} className="block group bg-white/60 backdrop-blur-md rounded-3xl overflow-hidden border border-white/30 hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 cursor-pointer">
                 <div className="aspect-video overflow-hidden">
                   <img
-                    src={conf.image}
-                    alt={conf.title}
+                    src={event.image}
+                    alt={event.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
@@ -137,14 +137,14 @@ const Index = () => {
                     <span className="font-mono">9:00 AM - 5:30 PM</span>
                   </div>
                   <h3 className="font-heading text-2xl md:text-3xl font-black text-foreground mb-4 group-hover:text-primary transition-colors duration-300 leading-tight">
-                    {conf.title}
+                    {event.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed text-base font-medium mb-6">
-                    {conf.description}
+                    {event.description}
                   </p>
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <MapPin size={18} />
-                    <span className="font-medium text-lg">{conf.location}</span>
+                    <span className="font-medium text-lg">{event.location}</span>
                   </div>
                 </div>
               </Link>

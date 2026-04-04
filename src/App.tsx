@@ -6,8 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Index from "./pages/Index.tsx";
-import Conferences from "./pages/Conferences.tsx";
-import ConferenceDetail from "./pages/ConferenceDetail.tsx";
+import Events from "./pages/Events.tsx";
+import EventDetail from "./pages/EventDetail.tsx";
 import Login from "./pages/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import OrganizerDashboard from "./pages/OrganizerDashboard.tsx";
@@ -24,8 +24,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/conferences" element={<Conferences />} />
-            <Route path="/conference/:id" element={<ConferenceDetail />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/event/:id" element={<EventDetail />} />
             <Route path="/login" element={<Login />} />
             <Route 
               path="/dashboard" 

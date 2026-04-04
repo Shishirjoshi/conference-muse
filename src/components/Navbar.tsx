@@ -13,7 +13,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: "Home", to: "/" },
-  { label: "Conferences", to: "/conferences" },
+  { label: "Events", to: "/events" },
   { label: "Dashboard", to: "/dashboard", protected: true },
   { label: "Admin Panel", to: "/organizer-dashboard", protected: true, adminOnly: true },
 ];
