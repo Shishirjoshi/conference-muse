@@ -10,7 +10,7 @@ interface ConferenceCardProps {
 
 const ConferenceCard = ({ conference }: ConferenceCardProps) => {
   return (
-    <div className="group rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 overflow-hidden">
+    <Link to={`/conference/${conference.id}`} className="block group rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 overflow-hidden cursor-pointer">
       <div className="aspect-[2/1] overflow-hidden">
         <ImageWithFallback
           src={conference.image}
@@ -42,13 +42,13 @@ const ConferenceCard = ({ conference }: ConferenceCardProps) => {
         <p className="text-muted-foreground leading-relaxed line-clamp-2 mb-8 text-base">
           {conference.description}
         </p>
-        <Link to={`/conference/${conference.id}`}>
-          <Button variant="outline" size="lg" className="w-full rounded-full py-3 text-base font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105">
-            View Details
-          </Button>
-        </Link>
+        <div className="text-center">
+          <span className="inline-block rounded-full border border-primary px-6 py-3 text-base font-medium text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105">
+            View Details →
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

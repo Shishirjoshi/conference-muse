@@ -123,7 +123,7 @@ const Index = () => {
           {/* Schedule Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {upcoming.map((conf) => (
-              <div key={conf.id} className="group bg-white/60 backdrop-blur-md rounded-3xl overflow-hidden border border-white/30 hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105">
+              <Link key={conf.id} to={`/conference/${conf.id}`} className="block group bg-white/60 backdrop-blur-md rounded-3xl overflow-hidden border border-white/30 hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 cursor-pointer">
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={conf.image}
@@ -147,7 +147,7 @@ const Index = () => {
                     <span className="font-medium text-lg">{conf.location}</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
