@@ -57,45 +57,49 @@ const Dashboard = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <div className="container mx-auto px-6 py-10">
+      <div className="container mx-auto px-6 py-20">
         {/* Profile header */}
-        <div className="mb-10 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary font-heading text-xl font-bold">
+        <div className="mb-16 flex items-center gap-6">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary font-heading text-2xl font-bold">
             {user?.fullName.substring(0, 2).toUpperCase()}
           </div>
           <div>
-            <h1 className="font-heading text-2xl font-bold text-foreground">{user?.fullName}</h1>
-            <p className="text-sm text-muted-foreground">{user?.email}</p>
+            <h1 className="font-heading text-4xl font-bold text-foreground">{user?.fullName}</h1>
+            <p className="text-lg text-muted-foreground">{user?.email}</p>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-10 max-w-lg">
-          <div className="rounded-xl border border-border bg-card p-4 shadow-card text-center">
-            <p className="font-heading text-2xl font-bold text-foreground">{bookings.length}</p>
-            <p className="text-xs text-muted-foreground">Bookings</p>
+        <div className="grid grid-cols-3 gap-6 mb-16 max-w-lg">
+          <div className="rounded-xl border border-border bg-card p-6 shadow-card text-center hover:shadow-card-hover transition-all duration-200 cursor-pointer hover:scale-105">
+            <p className="font-heading text-4xl font-bold text-foreground">{bookings.length}</p>
+            <p className="text-base text-muted-foreground font-medium">Bookings</p>
           </div>
-          <div className="rounded-xl border border-border bg-card p-4 shadow-card text-center">
-            <p className="font-heading text-2xl font-bold text-primary">{confirmedCount}</p>
-            <p className="text-xs text-muted-foreground">Confirmed</p>
+          <div className="rounded-xl border border-border bg-card p-6 shadow-card text-center hover:shadow-card-hover transition-all duration-200 cursor-pointer hover:scale-105">
+            <p className="font-heading text-4xl font-bold text-primary">{confirmedCount}</p>
+            <p className="text-base text-muted-foreground font-medium">Confirmed</p>
           </div>
-          <div className="rounded-xl border border-border bg-card p-4 shadow-card text-center">
-            <p className="font-heading text-2xl font-bold text-accent">{pendingCount}</p>
-            <p className="text-xs text-muted-foreground">Pending</p>
+          <div className="rounded-xl border border-border bg-card p-6 shadow-card text-center hover:shadow-card-hover transition-all duration-200 cursor-pointer hover:scale-105">
+            <p className="font-heading text-4xl font-bold text-accent">{pendingCount}</p>
+            <p className="text-base text-muted-foreground font-medium">Pending</p>
           </div>
         </div>
 
         {/* My Bookings */}
-        <h2 className="font-heading text-xl font-semibold text-foreground mb-4">My Bookings</h2>
+        <h2 className="font-heading text-3xl font-semibold text-foreground mb-8">My Bookings</h2>
         {loading ? (
           <div className="flex items-center justify-center py-8">
             <Loader2 size={20} className="animate-spin text-muted-foreground" />
           </div>
         ) : userBookings.length === 0 ? (
-          <div className="rounded-xl border border-border bg-card p-8 text-center">
-            <p className="text-muted-foreground mb-4">No bookings yet. Explore conferences to get started!</p>
+          <div className="rounded-xl border border-border bg-card p-12 shadow-card text-center">
+            <Calendar size={64} className="text-muted-foreground/30 mb-6 mx-auto" />
+            <p className="text-2xl font-semibold text-foreground mb-3">No bookings yet</p>
+            <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">Explore conferences to get started and never miss an event!</p>
             <Link to="/conferences">
-              <Button className="rounded-full">Browse Conferences</Button>
+              <Button className="rounded-full px-8 py-3 text-lg hover:bg-primary/90 transition-colors duration-200">
+                Browse Conferences
+              </Button>
             </Link>
           </div>
         ) : (

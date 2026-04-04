@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { conferences } from "@/data/conferences";
 import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -22,6 +23,7 @@ interface User {
 
 const OrganizerDashboard = () => {
   const { user, token } = useAuth();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<'users' | 'conferences'>('users');
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
@@ -111,6 +113,11 @@ const OrganizerDashboard = () => {
         fullName: '',
         role: 'participant'
       });
+      
+      toast({
+        title: editingUser ? "User updated successfully" : "User created successfully",
+        description: `${formData.fullName} has been ${editingUser ? 'updated' : 'added'} to the system.`,
+      });
     } catch (err) {
       console.error('Create/update user error:', err);
       setError(err instanceof Error ? err.message : 'Operation failed');
@@ -139,6 +146,11 @@ const OrganizerDashboard = () => {
       }
 
       await fetchUsers();
+      
+      toast({
+        title: "User deleted successfully",
+        description: "The user has been removed from the system.",
+      });
     } catch (err) {
       console.error('Delete user error:', err);
       setError(err instanceof Error ? err.message : 'Failed to delete user');
@@ -178,84 +190,84 @@ const OrganizerDashboard = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <div className="container mx-auto px-6 py-10">
+      <div className="container mx-auto px-6 py-20">
         {/* Profile header */}
-        <div className="mb-10 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary font-heading text-xl font-bold">
+        <div className="mb-16 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary font-heading text-2xl font-bold">
               {user?.fullName.substring(0, 2).toUpperCase()}
             </div>
             <div>
-              <h1 className="font-heading text-2xl font-bold text-foreground">Admin Panel</h1>
-              <p className="text-sm text-muted-foreground">🔑 {user?.email}</p>
+              <h1 className="font-heading text-4xl font-bold text-foreground">Admin Panel</h1>
+              <p className="text-lg text-muted-foreground">🔑 {user?.email}</p>
             </div>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex gap-4 mb-8 border-b border-border">
+        <div className="flex gap-8 mb-12 border-b border-border">
           <button
             onClick={() => setActiveTab('users')}
-            className={`pb-3 px-2 text-sm font-medium border-b-2 transition-colors ${
+            className={`pb-4 px-2 text-base font-semibold border-b-2 transition-colors ${
               activeTab === 'users'
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            <Users size={16} className="inline mr-2" />
+            <Users size={18} className="inline mr-3" />
             User Management
           </button>
           <button
             onClick={() => setActiveTab('conferences')}
-            className={`pb-3 px-2 text-sm font-medium border-b-2 transition-colors ${
+            className={`pb-4 px-2 text-base font-semibold border-b-2 transition-colors ${
               activeTab === 'conferences'
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            <Calendar size={16} className="inline mr-2" />
+            <Calendar size={18} className="inline mr-3" />
             Conferences
           </button>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <Alert variant="destructive" className="mb-6">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
+          <Alert variant="destructive" className="mb-8">
+            <AlertCircle className="h-5 w-5" />
+            <AlertDescription className="text-base">{error}</AlertDescription>
           </Alert>
         )}
 
         {/* Users Tab */}
         {activeTab === 'users' && (
           <div>
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-heading text-xl font-semibold text-foreground">All Users</h2>
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="font-heading text-3xl font-semibold text-foreground">All Users</h2>
               <Button
                 onClick={() => {
                   setEditingUser(null);
                   setFormData({ email: '', username: '', password: '', fullName: '', role: 'participant' });
                   setShowCreateModal(true);
                 }}
-                className="rounded-full gap-2"
+                className="rounded-full gap-3 px-6 py-3 text-base hover:bg-primary/90 transition-colors duration-200"
               >
-                <Plus size={16} /> Create User
+                <Plus size={18} /> Create User
               </Button>
             </div>
 
             {/* Users Table */}
             {loading && activeTab === 'users' ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 size={20} className="animate-spin text-muted-foreground" />
+              <div className="flex items-center justify-center py-12">
+                <Loader2 size={24} className="animate-spin text-muted-foreground" />
               </div>
             ) : (
               <div className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
-                <table className="w-full text-sm">
+                <table className="w-full text-base">
                   <thead>
                     <tr className="border-b border-border bg-muted/50">
-                      <th className="text-left px-5 py-3 font-medium text-muted-foreground">Name</th>
-                      <th className="text-left px-5 py-3 font-medium text-muted-foreground">Email</th>
-                      <th className="text-left px-5 py-3 font-medium text-muted-foreground">Username</th>
+                      <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Name</th>
+                      <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Email</th>
+                      <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Username</th>
                       <th className="text-left px-5 py-3 font-medium text-muted-foreground">Role</th>
                       <th className="text-left px-5 py-3 font-medium text-muted-foreground">Actions</th>
                     </tr>
@@ -263,18 +275,22 @@ const OrganizerDashboard = () => {
                   <tbody>
                     {users.length === 0 ? (
                       <tr>
-                        <td colSpan={5} className="px-5 py-8 text-center text-muted-foreground">
-                          No users found
+                        <td colSpan={5} className="px-6 py-12 text-center">
+                          <div className="flex flex-col items-center justify-center">
+                            <Users size={64} className="text-muted-foreground/30 mb-6" />
+                            <p className="text-2xl font-semibold text-foreground mb-2">No users found</p>
+                            <p className="text-lg text-muted-foreground">Create your first user to get started</p>
+                          </div>
                         </td>
                       </tr>
                     ) : (
                       users.map((u) => (
-                        <tr key={u.id} className="border-b border-border last:border-0 hover:bg-muted/30">
-                          <td className="px-5 py-3 font-medium text-foreground">{u.fullName}</td>
-                          <td className="px-5 py-3 text-muted-foreground">{u.email}</td>
-                          <td className="px-5 py-3 text-muted-foreground">@{u.username}</td>
-                          <td className="px-5 py-3">
-                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        <tr key={u.id} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors duration-200">
+                          <td className="px-6 py-4 font-semibold text-foreground">{u.fullName}</td>
+                          <td className="px-6 py-4 text-muted-foreground">{u.email}</td>
+                          <td className="px-6 py-4 text-muted-foreground">@{u.username}</td>
+                          <td className="px-6 py-4">
+                            <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium ${
                               u.role === 'admin'
                                 ? 'bg-primary/10 text-primary'
                                 : 'bg-accent/10 text-accent'
@@ -282,24 +298,24 @@ const OrganizerDashboard = () => {
                               {u.role === 'admin' ? '🔑 Admin' : '👤 Participant'}
                             </span>
                           </td>
-                          <td className="px-5 py-3">
-                            <div className="flex gap-2">
+                          <td className="px-6 py-4">
+                            <div className="flex gap-3">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleEditUser(u)}
-                                className="rounded-full gap-1 text-xs"
+                                className="rounded-full gap-2 px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
                               >
-                                <Edit size={12} /> Edit
+                                <Edit size={14} /> Edit
                               </Button>
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleDeleteUser(u.id)}
-                                className="rounded-full gap-1 text-xs text-destructive hover:text-destructive disabled:opacity-50"
+                                className="rounded-full gap-2 px-4 py-2 text-sm text-destructive hover:text-destructive hover:bg-destructive/10 disabled:opacity-50 transition-all duration-200"
                                 disabled={u.email === 'admin@conference.com'}
                               >
-                                <Trash2 size={12} /> Delete
+                                <Trash2 size={14} /> Delete
                               </Button>
                             </div>
                           </td>
@@ -316,49 +332,57 @@ const OrganizerDashboard = () => {
         {/* Conferences Tab */}
         {activeTab === 'conferences' && (
           <div>
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-heading text-xl font-semibold text-foreground">Managed Conferences</h2>
-              <Button className="rounded-full gap-2">
-                <Plus size={16} /> Add Conference
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="font-heading text-3xl font-semibold text-foreground">Managed Conferences</h2>
+              <Button className="rounded-full gap-3 px-6 py-3 text-base hover:bg-primary/90 transition-colors duration-200">
+                <Plus size={18} /> Add Conference
               </Button>
             </div>
 
-            <div className="space-y-4">
-              {myConferences.map((conference) => (
-                <div
-                  key={conference.id}
-                  className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 shadow-card transition-all hover:shadow-card-hover sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={conference.image}
-                      alt={conference.title}
-                      className="h-16 w-24 rounded-lg object-cover shrink-0"
-                    />
-                    <div>
-                      <h3 className="font-heading font-semibold text-foreground">{conference.title}</h3>
-                      <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1"><Calendar size={12} /> {conference.date}</span>
-                        <span className="flex items-center gap-1"><MapPin size={12} /> {conference.location}</span>
-                        <span className="flex items-center gap-1"><Users size={12} /> {conference.speakers.length} speakers</span>
+            <div className="space-y-6">
+              {myConferences.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-32 text-center">
+                  <Calendar size={64} className="text-muted-foreground/30 mb-6" />
+                  <p className="text-2xl font-semibold text-foreground mb-2">No conferences found</p>
+                  <p className="text-lg text-muted-foreground">Add your first conference to get started</p>
+                </div>
+              ) : (
+                myConferences.map((conference) => (
+                  <div
+                    key={conference.id}
+                    className="flex flex-col gap-6 rounded-xl border border-border bg-card p-8 shadow-card transition-all hover:shadow-card-hover sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div className="flex items-center gap-6">
+                      <img
+                        src={conference.image}
+                        alt={conference.title}
+                        className="h-20 w-32 rounded-lg object-cover shrink-0"
+                      />
+                      <div>
+                        <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{conference.title}</h3>
+                        <div className="flex flex-wrap items-center gap-4 text-base text-muted-foreground">
+                          <span className="flex items-center gap-2"><Calendar size={16} /> {conference.date}</span>
+                          <span className="flex items-center gap-2"><MapPin size={16} /> {conference.location}</span>
+                          <span className="flex items-center gap-2"><Users size={16} /> {conference.speakers.length} speakers</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Link to={`/conference/${conference.id}`}>
-                      <Button variant="outline" size="sm" className="rounded-full gap-1 text-xs">
-                        <Eye size={12} /> View
+                    <div className="flex items-center gap-3">
+                      <Link to={`/conference/${conference.id}`}>
+                        <Button variant="outline" size="sm" className="rounded-full gap-2 px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200">
+                          <Eye size={14} /> View
+                        </Button>
+                      </Link>
+                      <Button variant="outline" size="sm" className="rounded-full gap-2 px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200">
+                        <Edit size={14} /> Edit
                       </Button>
-                    </Link>
-                    <Button variant="outline" size="sm" className="rounded-full gap-1 text-xs">
-                      <Edit size={12} /> Edit
-                    </Button>
-                    <Button variant="outline" size="sm" className="rounded-full gap-1 text-xs text-destructive hover:text-destructive">
-                      <Trash2 size={12} /> Delete
-                    </Button>
+                      <Button variant="outline" size="sm" className="rounded-full gap-2 px-4 py-2 text-sm text-destructive hover:text-destructive hover:bg-destructive/10 transition-all duration-200">
+                        <Trash2 size={14} /> Delete
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         )}

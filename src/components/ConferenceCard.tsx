@@ -9,7 +9,7 @@ interface ConferenceCardProps {
 
 const ConferenceCard = ({ conference }: ConferenceCardProps) => {
   return (
-    <div className="group rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 overflow-hidden">
+    <div className="group rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 overflow-hidden">
       <div className="aspect-[2/1] overflow-hidden">
         <img
           src={conference.image}
@@ -17,31 +17,31 @@ const ConferenceCard = ({ conference }: ConferenceCardProps) => {
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <div className="p-5">
-        <div className="mb-3 flex items-center gap-3">
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+      <div className="p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary uppercase tracking-wide">
             {conference.category}
           </span>
-          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Globe size={12} /> {conference.mode}
+          <span className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Globe size={16} /> {conference.mode}
           </span>
         </div>
-        <h3 className="font-heading text-lg font-semibold text-foreground mb-2 line-clamp-1">
+        <h3 className="font-heading text-2xl font-bold text-foreground mb-4 line-clamp-1 leading-tight">
           {conference.title}
         </h3>
-        <div className="mb-3 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar size={14} className="shrink-0" /> {conference.date}
+        <div className="mb-6 flex flex-col gap-3">
+          <div className="flex items-center gap-3 text-base font-medium text-foreground">
+            <Calendar size={18} className="shrink-0 text-primary" /> {conference.date}
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <MapPin size={14} className="shrink-0" /> {conference.location}
+          <div className="flex items-center gap-3 text-base font-medium text-foreground">
+            <MapPin size={18} className="shrink-0 text-primary" /> {conference.location}
           </div>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
+        <p className="text-muted-foreground leading-relaxed line-clamp-2 mb-8 text-base">
           {conference.description}
         </p>
         <Link to={`/conference/${conference.id}`}>
-          <Button variant="outline" size="sm" className="w-full rounded-full">
+          <Button variant="outline" size="lg" className="w-full rounded-full py-3 text-base font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-105">
             View Details
           </Button>
         </Link>

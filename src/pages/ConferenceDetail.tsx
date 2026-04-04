@@ -40,41 +40,41 @@ const ConferenceDetail = () => {
           <Link to="/conferences" className="inline-flex items-center gap-1 text-sm text-primary-foreground/80 hover:text-primary-foreground mb-3 transition-colors">
             <ArrowLeft size={14} /> Back
           </Link>
-          <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground">
             {conference.title}
           </h1>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-10">
-        <div className="grid gap-10 lg:grid-cols-3">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid gap-12 lg:grid-cols-3">
           {/* Main content */}
-          <div className="lg:col-span-2 space-y-10">
+          <div className="lg:col-span-2 space-y-12">
             {/* Meta */}
             <div className="flex flex-wrap gap-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm shadow-card">
-                <Calendar size={14} className="text-primary" /> {conference.date}
+              <span className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary shadow-sm">
+                <Calendar size={14} /> {conference.date}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm shadow-card">
-                <MapPin size={14} className="text-primary" /> {conference.location}
+              <span className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary shadow-sm">
+                <MapPin size={14} /> {conference.location}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm shadow-card">
+              <span className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm shadow-card">
                 <Globe size={14} className="text-primary" /> {conference.mode}
               </span>
             </div>
 
             {/* About */}
             <div>
-              <h2 className="font-heading text-xl font-semibold text-foreground mb-3">About</h2>
+              <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">About</h2>
               <p className="text-muted-foreground leading-relaxed">{conference.longDescription}</p>
             </div>
 
             {/* Speakers */}
             <div>
-              <h2 className="font-heading text-xl font-semibold text-foreground mb-4">Speakers</h2>
+              <h2 className="font-heading text-2xl font-semibold text-foreground mb-6">Speakers</h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 {conference.speakers.map((speaker) => (
-                  <div key={speaker.name} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-card">
+                  <div key={speaker.name} className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 shadow-card">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-heading font-semibold">
                       {speaker.avatar}
                     </div>
@@ -136,7 +136,7 @@ const ConferenceDetail = () => {
                   <span className="font-medium text-foreground">{conference.category}</span>
                 </div>
               </div>
-              <Button className="w-full rounded-full" size="lg">
+              <Button className="w-full rounded-full hover:bg-primary/90 transition-colors duration-200" size="lg">
                 Register Now
               </Button>
               <p className="text-xs text-center text-muted-foreground">Free registration • Limited spots</p>

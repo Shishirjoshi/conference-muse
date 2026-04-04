@@ -75,7 +75,7 @@ const Navbar = () => {
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="rounded-full gap-2"
+                className="rounded-full gap-2 hover:bg-destructive/10 hover:text-destructive transition-colors duration-200"
               >
                 <LogOut size={16} />
                 Logout
@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <Button size="sm" className="rounded-full px-6">
+              <Button size="sm" className="rounded-full px-6 hover:bg-primary hover:text-primary-foreground transition-colors duration-200">
                 Login
               </Button>
             </Link>

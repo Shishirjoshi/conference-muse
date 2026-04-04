@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+import sqlite3 from 'sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bcryptjs from 'bcryptjs';
@@ -6,15 +6,51 @@ import bcryptjs from 'bcryptjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, 'conference.db');
 
-export const db = new Database(dbPath);
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) console.error('Database connection error:', err);
+});
 
-// Enable foreign keys
-db.pragma('foreign_keys = ON');
+// Promisify database operations
+const dbRun = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function(err) {
+      if (err) reject(err);
+      else resolve({ lastID: this.lastID });
+    });
+  });
+};
+
+const dbGet = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+};
+
+const dbAll = (sql, params = []) => {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows || []);
+    });
+  });
+};
+
+const dbExec = (sql) => {
+  return new Promise((resolve, reject) => {
+    db.exec(sql, (err) => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+};
 
 // Initialize database schema
-export function initializeDatabase() {
+export async function initializeDatabase() {
   // Create users table
-  db.exec(`
+  await dbExec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE NOT NULL,
@@ -28,7 +64,7 @@ export function initializeDatabase() {
   `);
 
   // Create bookings table
-  db.exec(`
+  await dbExec(`
     CREATE TABLE IF NOT EXISTS bookings (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -36,19 +72,18 @@ export function initializeDatabase() {
       status TEXT NOT NULL DEFAULT 'confirmed' CHECK(status IN ('pending', 'confirmed', 'cancelled')),
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
       UNIQUE(user_id, conference_id)
     )
   `);
 
   // Create seed data - demo admin user
-  const adminExists = db.prepare('SELECT * FROM users WHERE email = ?').get('admin@conference.com');
+  const adminExists = await dbGet('SELECT * FROM users WHERE email = ?', ['admin@conference.com']);
   if (!adminExists) {
     const hashedPassword = bcryptjs.hashSync('admin123', 10);
-    db.prepare(`
+    await dbRun(`
       INSERT INTO users (email, username, password, full_name, role)
       VALUES (?, ?, ?, ?, ?)
-    `).run('admin@conference.com', 'admin', hashedPassword, 'Conference Admin', 'admin');
+    `, ['admin@conference.com', 'admin', hashedPassword, 'Conference Admin', 'admin']);
     console.log('✓ Demo admin user created: admin@conference.com / admin123');
   }
 
@@ -57,68 +92,61 @@ export function initializeDatabase() {
 
 // User queries
 export const userQueries = {
-  findByEmail: (email) => db.prepare('SELECT * FROM users WHERE email = ?').get(email),
-  findById: (id) => db.prepare('SELECT * FROM users WHERE id = ?').get(id),
-  findByUsername: (username) => db.prepare('SELECT * FROM users WHERE username = ?').get(username),
+  findByEmail: (email) => dbGet('SELECT * FROM users WHERE email = ?', [email]),
+  findById: (id) => dbGet('SELECT * FROM users WHERE id = ?', [id]),
+  findByUsername: (username) => dbGet('SELECT * FROM users WHERE username = ?', [username]),
   
-  create: (email, username, hashedPassword, fullName) => {
-    const stmt = db.prepare(`
+  create: async (email, username, hashedPassword, fullName) => {
+    const result = await dbRun(`
       INSERT INTO users (email, username, password, full_name, role)
       VALUES (?, ?, ?, ?, 'participant')
-    `);
-    const result = stmt.run(email, username, hashedPassword, fullName);
-    return db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
+    `, [email, username, hashedPassword, fullName]);
+    return dbGet('SELECT * FROM users WHERE id = ?', [result.lastID]);
   },
 
-  update: (id, updates) => {
-    const setClause = Object.keys(updates)
-      .map(key => `${key} = ?`)
-      .join(', ');
-    const values = Object.values(updates);
+  update: async (id, updates) => {
+    const keys = Object.keys(updates);
+    const setClause = keys.map(k => `${k} = ?`).join(', ');
+    const values = keys.map(k => updates[k]);
     values.push(id);
     
-    db.prepare(`UPDATE users SET ${setClause}, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(...values);
-    return db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+    await dbRun(`UPDATE users SET ${setClause}, updated_at = CURRENT_TIMESTAMP WHERE id = ?`, values);
+    return dbGet('SELECT * FROM users WHERE id = ?', [id]);
   },
 
-  delete: (id) => {
-    db.prepare('DELETE FROM users WHERE id = ?').run(id);
-  },
+  delete: (id) => dbRun('DELETE FROM users WHERE id = ?', [id]),
 
-  getAllAdmins: () => db.prepare('SELECT * FROM users WHERE role = ?').all('admin'),
+  getAllAdmins: () => dbAll('SELECT * FROM users WHERE role = ?', ['admin']),
   
-  getAllParticipants: () => db.prepare('SELECT * FROM users WHERE role = ?').all('participant'),
+  getAllParticipants: () => dbAll('SELECT * FROM users WHERE role = ?', ['participant']),
 
-  getAllUsers: () => db.prepare('SELECT id, email, username, full_name, role, created_at FROM users ORDER BY created_at DESC').all(),
+  getAllUsers: () => dbAll('SELECT id, email, username, full_name, role, created_at FROM users ORDER BY created_at DESC'),
 
-  updateUserRole: (id, role) => {
-    db.prepare('UPDATE users SET role = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(role, id);
-    return db.prepare('SELECT * FROM users WHERE id = ?').get(id);
+  updateUserRole: async (id, role) => {
+    await dbRun('UPDATE users SET role = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?', [role, id]);
+    return dbGet('SELECT * FROM users WHERE id = ?', [id]);
   }
 };
 
 // Booking queries
 export const bookingQueries = {
-  create: (userId, conferenceId) => {
-    const stmt = db.prepare(`
+  create: async (userId, conferenceId) => {
+    const result = await dbRun(`
       INSERT INTO bookings (user_id, conference_id, status)
       VALUES (?, ?, 'confirmed')
-    `);
-    const result = stmt.run(userId, conferenceId);
-    return db.prepare('SELECT * FROM bookings WHERE id = ?').get(result.lastInsertRowid);
+    `, [userId, conferenceId]);
+    return dbGet('SELECT * FROM bookings WHERE id = ?', [result.lastID]);
   },
 
   findByUserAndConference: (userId, conferenceId) =>
-    db.prepare('SELECT * FROM bookings WHERE user_id = ? AND conference_id = ?').get(userId, conferenceId),
+    dbGet('SELECT * FROM bookings WHERE user_id = ? AND conference_id = ?', [userId, conferenceId]),
 
   getByUserId: (userId) =>
-    db.prepare('SELECT * FROM bookings WHERE user_id = ? ORDER BY created_at DESC').all(userId),
+    dbAll('SELECT * FROM bookings WHERE user_id = ? ORDER BY created_at DESC', [userId]),
 
-  delete: (id) => {
-    db.prepare('DELETE FROM bookings WHERE id = ?').run(id);
-  },
+  delete: (id) => dbRun('DELETE FROM bookings WHERE id = ?', [id]),
 
   deleteByUserAndConference: (userId, conferenceId) => {
-    db.prepare('DELETE FROM bookings WHERE user_id = ? AND conference_id = ?').run(userId, conferenceId);
+    return dbRun('DELETE FROM bookings WHERE user_id = ? AND conference_id = ?', [userId, conferenceId]);
   }
 };
