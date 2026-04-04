@@ -1,8 +1,8 @@
-# Conference Muse - Authentication System Setup
+# EventHub - Authentication System Setup
 
 ## Overview
 
-This document explains the complete authentication system implementation for Conference Muse. The system provides restricted access with admin user management.
+This document explains the complete authentication system implementation for EventHub. The system provides restricted access with admin user management.
 
 ## Features Implemented
 
@@ -93,7 +93,7 @@ The server will run on `http://localhost:5000` and automatically:
 
 **Output:**
 ```
-✓ Conference Muse Auth Server running on http://localhost:5000
+✓ EventHub Auth Server running on http://localhost:5000
 ✓ Database initialized successfully
 
 Demo credentials:

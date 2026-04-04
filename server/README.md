@@ -1,6 +1,6 @@
-# Conference Muse Backend
+# EventHub Backend
 
-Authentication and user management server for Conference Muse application.
+Authentication and user management server for EventHub application.
 
 ## Setup
 

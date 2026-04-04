@@ -60,7 +60,7 @@ const Footer = () => {
             {/* Brand */}
             <div>
               <div className="mb-6 flex items-start">
-                <img src={logoSrc} alt="Conference Muse logo" className="h-12 w-auto object-contain" />
+                <img src={logoSrc} alt="EventHub logo" className="h-12 w-auto object-contain" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed font-medium">
                 A powerful gathering of visionaries and industry experts united by innovation, inspiring dialogue, and meaningful connections that spark transformation worldwide.
@@ -145,7 +145,7 @@ const Footer = () => {
 
           <div className="border-t border-border/30 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
             <p className="text-xs text-muted-foreground font-medium">
-              Copyright © 2026 Conference Muse. All Rights Reserved.
+              Copyright © 2026 EventHub. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">

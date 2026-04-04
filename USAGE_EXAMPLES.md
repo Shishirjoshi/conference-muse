@@ -17,7 +17,7 @@ npm install
 npm start
 
 # Expected output:
-# ✓ Conference Muse Auth Server running on http://localhost:5000
+# ✓ EventHub Auth Server running on http://localhost:5000
 # ✓ Database initialized successfully
 # 
 # Demo credentials:

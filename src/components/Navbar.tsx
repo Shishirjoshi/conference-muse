@@ -42,7 +42,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-300 group">
           <img
             src={logoSrc}
-            alt="Conference Muse logo"
+            alt="EventHub logo"
             className="h-14 max-w-[180px] w-auto object-contain group-hover:scale-105 transition-transform duration-300"
           />
         </Link>

@@ -3,7 +3,7 @@
 ## Complete Directory Tree
 
 ```
-conference-muse/
+eventhub/
 │
 ├── 📁 server/                          ← NEW: Backend server
 │   ├── index.js                        ← Express server entry point

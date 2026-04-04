@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Conference Muse - Quick Start Script
+# EventHub - Quick Start Script
 # This script sets up and runs the entire authentication system
 
-echo "🚀 Conference Muse - Authentication System Setup"
+echo "🚀 EventHub - Authentication System Setup"
 echo "=================================================="
 echo ""
 
