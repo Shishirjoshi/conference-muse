@@ -30,9 +30,9 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const visibleLinks = navLinks.filter(link => {
+  const visibleLinks = navLinks.filter((link) => {
     if (link.protected && !isAuthenticated) return false;
-    if (link.adminOnly && user?.role !== 'admin') return false;
+    if (link.adminOnly && user?.role !== "admin") return false;
     return true;
   });
 
@@ -47,7 +47,6 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop */}
         <div className="hidden items-center gap-8 md:flex">
           {visibleLinks.map((link) => (
             <Link
@@ -72,7 +71,7 @@ const Navbar = () => {
             <div className="flex items-center gap-4 border-l border-border/30 pl-8">
               <div className="text-right hidden sm:block pr-3">
                 <p className="text-xs font-bold text-primary uppercase tracking-widest">
-                  {user?.role === 'admin' ? '🔑 Admin' : '👤 User'}
+                  {user?.role === "admin" ? "Admin" : "User"}
                 </p>
                 <p className="text-sm font-bold text-foreground">{user?.fullName}</p>
               </div>
@@ -88,14 +87,16 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <Button size="sm" className="rounded-full px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold hover:scale-105 text-white">
+              <Button
+                size="sm"
+                className="rounded-full px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold hover:scale-105 text-white"
+              >
                 Login
               </Button>
             </Link>
           )}
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="md:hidden text-foreground hover:text-primary transition-colors duration-300 p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -104,7 +105,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="border-t border-border/30 bg-gradient-to-b from-card to-card/95 backdrop-blur-lg px-6 py-4 md:hidden animate-slideInLeft">
           <div className="flex flex-col gap-3">
@@ -123,94 +123,30 @@ const Navbar = () => {
               </Link>
             ))}
             {isAuthenticated ? (
-              <>
-                <div className="pt-4 border-t border-border/30 mt-4">
-                  <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">
-                    {user?.role === 'admin' ? '🔑 Admin' : '👤 User'}
-                  </p>
-                  <p className="text-sm font-bold text-foreground mb-4">{user?.fullName}</p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      handleLogout();
-                    }}
-                    className="w-full rounded-lg gap-2 hover:bg-destructive/15 hover:text-destructive transition-all duration-200 font-semibold"
-                  >
-                    <LogOut size={16} />
-                    Logout
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <Link to="/login" onClick={() => setMobileOpen(false)}>
-                <Button size="sm" className="w-full rounded-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 font-semibold text-white">
-                  Login
+              <div className="pt-4 border-t border-border/30 mt-4">
+                <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">
+                  {user?.role === "admin" ? "Admin" : "User"}
+                </p>
+                <p className="text-sm font-bold text-foreground mb-4">{user?.fullName}</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    handleLogout();
+                  }}
+                  className="w-full rounded-lg gap-2 hover:bg-destructive/15 hover:text-destructive transition-all duration-200 font-semibold"
+                >
+                  <LogOut size={16} />
+                  Logout
                 </Button>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-};
-
-export default Navbar;
-        </div>
-
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="border-t border-border bg-card px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-4">
-            {visibleLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setMobileOpen(false)}
-                className={`text-sm font-medium ${
-                  location.pathname === link.to
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            {isAuthenticated ? (
-              <>
-                <div className="pt-2 border-t border-border">
-                  <p className="text-xs font-medium text-muted-foreground mb-2">
-                    {user?.role === 'admin' ? '🔑 Admin' : '👤 Attendee'}
-                  </p>
-                  <p className="text-sm font-medium text-foreground mb-3">{user?.fullName}</p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      handleLogout();
-                    }}
-                    className="w-full rounded-full gap-2"
-                  >
-                    <LogOut size={16} />
-                    Logout
-                  </Button>
-                </div>
-              </>
+              </div>
             ) : (
               <Link to="/login" onClick={() => setMobileOpen(false)}>
-                <Button size="sm" className="w-full rounded-full">
+                <Button
+                  size="sm"
+                  className="w-full rounded-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 font-semibold text-white"
+                >
                   Login
                 </Button>
               </Link>

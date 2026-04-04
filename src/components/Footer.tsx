@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { logoSrc } from "@/lib/logo";
@@ -134,8 +134,8 @@ const Footer = () => {
                   <span>support@domainname.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-sm text-muted-foreground font-medium group">
-                  <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/30 group-hover:bg-green-500/20 transition-all duration-300 mt-0.5">
-                    <MapPin size={16} className="text-green-600" />
+                  <div className="p-2 rounded-lg bg-accent/10 border border-accent/30 group-hover:bg-accent/20 transition-all duration-300 mt-0.5">
+                    <MapPin size={16} className="text-accent" />
                   </div>
                   <span>45/2 Central Business Innovation<br/>Near International Trade Tower</span>
                 </div>
