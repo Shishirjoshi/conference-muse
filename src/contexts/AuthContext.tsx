@@ -29,6 +29,13 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  const logout = useCallback(() => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem('authToken');
+    setError(null);
+  }, []);
+
   const verifyToken = useCallback(async (tokenToVerify) => {
     try {
       setIsLoading(true);
@@ -107,13 +114,6 @@ export function AuthProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  }, []);
-
-  const logout = useCallback(() => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem('authToken');
-    setError(null);
   }, []);
 
   const value = {
