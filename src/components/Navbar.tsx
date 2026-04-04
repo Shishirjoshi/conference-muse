@@ -1,17 +1,39 @@
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  to: string;
+  protected?: boolean;
+  adminOnly?: boolean;
+}
+
+const navLinks: NavLink[] = [
   { label: "Home", to: "/" },
   { label: "Conferences", to: "/conferences" },
-  { label: "Dashboard", to: "/dashboard" },
+  { label: "Dashboard", to: "/dashboard", protected: true },
+  { label: "Admin Panel", to: "/organizer-dashboard", protected: true, adminOnly: true },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  const visibleLinks = navLinks.filter(link => {
+    if (link.protected && !isAuthenticated) return false;
+    if (link.adminOnly && user?.role !== 'admin') return false;
+    return true;
+  });
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
@@ -27,7 +49,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {visibleLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -40,11 +62,32 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link to="/login">
-            <Button size="sm" className="rounded-full px-6">
-              Login
-            </Button>
-          </Link>
+
+          {isAuthenticated ? (
+            <div className="flex items-center gap-3 border-l border-border pl-8">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs font-medium text-muted-foreground">
+                  {user?.role === 'admin' ? '🔑 Admin' : '👤 Attendee'}
+                </p>
+                <p className="text-sm font-medium text-foreground">{user?.fullName}</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="rounded-full gap-2"
+              >
+                <LogOut size={16} />
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <Button size="sm" className="rounded-full px-6">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -60,7 +103,7 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="border-t border-border bg-card px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+            {visibleLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
@@ -74,9 +117,34 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Link to="/login" onClick={() => setMobileOpen(false)}>
-              <Button size="sm" className="w-full rounded-full">Login</Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="pt-2 border-t border-border">
+                  <p className="text-xs font-medium text-muted-foreground mb-2">
+                    {user?.role === 'admin' ? '🔑 Admin' : '👤 Attendee'}
+                  </p>
+                  <p className="text-sm font-medium text-foreground mb-3">{user?.fullName}</p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full rounded-full gap-2"
+                  >
+                    <LogOut size={16} />
+                    Logout
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <Link to="/login" onClick={() => setMobileOpen(false)}>
+                <Button size="sm" className="w-full rounded-full">
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       )}
