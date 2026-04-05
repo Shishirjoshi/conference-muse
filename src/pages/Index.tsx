@@ -112,7 +112,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-transparent">
       <Navbar />
 
       <section className="relative overflow-hidden min-h-screen flex items-center">

@@ -166,6 +166,24 @@
   }
 }
 
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.58;
+  }
+}
+
+@keyframes star-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -189,5 +207,20 @@
   }
   .shadow-soft {
     box-shadow: var(--shadow-soft);
+  }
+
+  .star-dot {
+    animation-name: star-twinkle, star-float;
+    animation-timing-function: ease-in-out, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    box-shadow: 0 0 8px hsl(210 20% 98% / 0.16);
+    will-change: opacity, transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-dot {
+    animation: none;
+    opacity: 0.18 !important;
   }
 }
