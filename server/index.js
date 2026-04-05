@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { initializeDatabase } from './db.js';
+import { initializeDatabase, contactQueries } from './db.js';
 import authRoutes from './routes.js';
 
 const app = express();
@@ -12,9 +12,13 @@ app.use(cors({
     'http://localhost:8080',
     'http://localhost:8081',
     'http://localhost:8082',
+    'http://localhost:5173',
+    'http://localhost:4173',
     'http://127.0.0.1:8080',
     'http://127.0.0.1:8081',
     'http://127.0.0.1:8082',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:4173',
     'http://localhost:3000',
     'http://127.0.0.1:3000'
   ],
@@ -28,6 +32,26 @@ initializeDatabase();
 
 // Routes
 app.use('/api/auth', authRoutes);
+
+// Contact messages route
+app.post('/api/contact-messages', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Name, email, and message are required' });
+    }
+
+    const contactMessage = await contactQueries.create(name.trim(), email.trim(), message.trim());
+    res.status(201).json({
+      message: 'Contact message submitted successfully',
+      contactMessage,
+    });
+  } catch (error) {
+    console.error('Create contact message error:', error);
+    res.status(500).json({ error: 'Failed to submit contact message' });
+  }
+});
 
 // Health check
 app.get('/api/health', (req, res) => {

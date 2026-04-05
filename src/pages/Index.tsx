@@ -6,15 +6,29 @@ import Footer from "@/components/Footer";
 import EventCard from "@/components/EventCard";
 import { events } from "@/data/events";
 import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const Index = () => {
   const upcoming = events.slice(0, 3);
+  const { toast } = useToast();
   const [timeLeft, setTimeLeft] = useState({
     days: 270,
     hours: 8,
     minutes: 43,
     seconds: 4,
   });
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [contactFeedback, setContactFeedback] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -37,6 +51,65 @@ const Index = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setContactFeedback(null);
+
+    if (!contactForm.name || !contactForm.email || !contactForm.message) {
+      setContactFeedback({
+        type: "error",
+        message: "Please fill in your name, email, and message.",
+      });
+      toast({
+        title: "Missing fields",
+        description: "Please fill in your name, email, and message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setIsSubmittingContact(true);
+
+      const response = await fetch(`${API_URL}/contact-messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactForm),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      toast({
+        title: "Message sent",
+        description: "Thanks for contacting us. We will reach out soon.",
+      });
+      setContactFeedback({
+        type: "success",
+        message: "Message sent successfully. Our team will contact you soon.",
+      });
+
+      setContactForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to send message";
+      setContactFeedback({
+        type: "error",
+        message,
+      });
+      toast({
+        title: "Submission failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmittingContact(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -164,7 +237,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-slate-950 text-slate-100">
+      <section id="contact" className="py-24 bg-slate-950 text-slate-100">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
@@ -175,7 +248,7 @@ const Index = () => {
             <div className="grid lg:grid-cols-5 gap-8 items-start">
               <div className="lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl p-6 md:p-8">
                 <h3 className="font-heading text-2xl font-semibold mb-6">Send A Message</h3>
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleContactSubmit}>
                   <div>
                     <label htmlFor="contact-name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
                     <div className="relative">
@@ -183,7 +256,10 @@ const Index = () => {
                       <input
                         id="contact-name"
                         type="text"
+                        required
                         placeholder="Your full name"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
                         className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
                       />
                     </div>
@@ -196,7 +272,10 @@ const Index = () => {
                       <input
                         id="contact-email"
                         type="email"
+                        required
                         placeholder="you@company.com"
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
                         className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
                       />
                     </div>
@@ -209,15 +288,31 @@ const Index = () => {
                       <textarea
                         id="contact-message"
                         rows={5}
+                        required
                         placeholder="Write your message..."
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
                         className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all resize-none"
                       />
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full md:w-auto px-8 py-3 text-white bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/20">
-                    Submit Message
+                  <Button
+                    type="submit"
+                    disabled={isSubmittingContact}
+                    className="w-full md:w-auto px-8 py-3 text-white bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/20 disabled:opacity-70"
+                  >
+                    {isSubmittingContact ? "Sending..." : "Submit Message"}
                   </Button>
+                  {contactFeedback && (
+                    <p
+                      className={`text-sm font-medium ${
+                        contactFeedback.type === "success" ? "text-emerald-400" : "text-rose-400"
+                      }`}
+                    >
+                      {contactFeedback.message}
+                    </p>
+                  )}
                 </form>
               </div>
 

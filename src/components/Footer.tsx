@@ -1,9 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    if (location.pathname !== "/") {
+      navigate("/#contact");
+      return;
+    }
+
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       {/* Newsletter Section */}
@@ -121,28 +138,29 @@ const Footer = () => {
               <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Get In Touch</h4>
               <div className="flex flex-col gap-5">
                 <a
-                  href="tel:+00123456789"
+                  href="tel:+9770000000000"
                   className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-all duration-300 font-medium group"
                 >
                   <div className="p-2 rounded-lg bg-primary/10 border border-primary/30 group-hover:bg-primary/20 transition-all duration-300">
                     <Phone size={16} className="text-primary" />
                   </div>
-                  <span>+00 123 456 789</span>
-                </a>
-                <a
-                  href="mailto:support@domainname.com"
-                  className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-all duration-300 font-medium group"
-                >
-                  <div className="p-2 rounded-lg bg-accent/10 border border-accent/30 group-hover:bg-accent/20 transition-all duration-300">
-                    <Mail size={16} className="text-accent" />
-                  </div>
-                  <span>support@domainname.com</span>
+                  <span>+977**********</span>
                 </a>
                 <div className="flex items-start gap-3 text-sm text-muted-foreground font-medium group">
                   <div className="p-2 rounded-lg bg-accent/10 border border-accent/30 group-hover:bg-accent/20 transition-all duration-300 mt-0.5">
+                    <Mail size={16} className="text-accent" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <a href="mailto:shishirjoshi65@gmail.com" className="hover:text-primary transition-all duration-300">shishirjoshi65@gmail.com</a>
+                    <a href="mailto:nabindakal@gmail.com" className="hover:text-primary transition-all duration-300">nabindakal@gmail.com</a>
+                    <a href="mailto:amshika@gmail.com" className="hover:text-primary transition-all duration-300">amshika@gmail.com</a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground font-medium group">
+                  <div className="p-2 rounded-lg bg-accent/10 border border-accent/30 group-hover:bg-accent/20 transition-all duration-300">
                     <MapPin size={16} className="text-accent" />
                   </div>
-                  <span>45/2 Central Business Innovation<br/>Near International Trade Tower</span>
+                  <span>Kathmandu, Nepal</span>
                 </div>
               </div>
             </div>
@@ -161,9 +179,9 @@ const Footer = () => {
                 Terms of Service
               </Link>
               <span className="text-border">•</span>
-              <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
+              <a href="/#contact" onClick={handleContactClick} className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
                 Contact Us
-              </Link>
+              </a>
             </div>
           </div>
         </div>

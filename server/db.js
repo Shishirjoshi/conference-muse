@@ -76,6 +76,17 @@ export async function initializeDatabase() {
     )
   `);
 
+  // Create contact messages table
+  await dbExec(`
+    CREATE TABLE IF NOT EXISTS contact_messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      message TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Create seed data - demo admin user
   const adminExists = await dbGet('SELECT * FROM users WHERE email = ?', ['admin@conference.com']);
   if (!adminExists) {
@@ -149,4 +160,18 @@ export const bookingQueries = {
   deleteByUserAndConference: (userId, conferenceId) => {
     return dbRun('DELETE FROM bookings WHERE user_id = ? AND conference_id = ?', [userId, conferenceId]);
   }
+};
+
+// Contact message queries
+export const contactQueries = {
+  create: async (name, email, message) => {
+    const result = await dbRun(`
+      INSERT INTO contact_messages (name, email, message)
+      VALUES (?, ?, ?)
+    `, [name, email, message]);
+
+    return dbGet('SELECT * FROM contact_messages WHERE id = ?', [result.lastID]);
+  },
+
+  getAll: () => dbAll('SELECT * FROM contact_messages ORDER BY created_at DESC'),
 };
