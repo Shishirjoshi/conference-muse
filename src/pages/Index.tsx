@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Users, Calendar, Globe, Play, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, Users, Calendar, Globe, Play, Clock, Sparkles, User, Mail, MessageSquare, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -160,6 +160,93 @@ const Index = () => {
                 <p className="text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-slate-950 text-slate-100">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-14">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4">Contact Us</h2>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">Let&apos;s discuss your next conference collaboration and build something remarkable together.</p>
+            </div>
+
+            <div className="grid lg:grid-cols-5 gap-8 items-start">
+              <div className="lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl p-6 md:p-8">
+                <h3 className="font-heading text-2xl font-semibold mb-6">Send A Message</h3>
+                <form className="space-y-5">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                    <div className="relative">
+                      <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                      <input
+                        id="contact-name"
+                        type="text"
+                        placeholder="Your full name"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-email" className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <div className="relative">
+                      <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                      <input
+                        id="contact-email"
+                        type="email"
+                        placeholder="you@company.com"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                    <div className="relative">
+                      <MessageSquare size={18} className="absolute left-3 top-4 text-slate-500" />
+                      <textarea
+                        id="contact-message"
+                        rows={5}
+                        placeholder="Write your message..."
+                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  <Button type="submit" className="w-full md:w-auto px-8 py-3 text-white bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/20">
+                    Submit Message
+                  </Button>
+                </form>
+              </div>
+
+              <div className="lg:col-span-2 rounded-2xl border border-slate-800 bg-slate-900/60 shadow-2xl p-6 md:p-8">
+                <h3 className="font-heading text-2xl font-semibold mb-6">Team Members</h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  {[
+                    { name: "Shishir Joshi", role: "UI/UX Designer & Frontend Developer" },
+                    { name: "Nabin Dhakal", role: "Backend Developer" },
+                    { name: "Amshika Bhushal", role: "Project Manager / Content Strategist" },
+                  ].map((member) => (
+                    <article
+                      key={member.name}
+                      className="rounded-xl border border-slate-700/80 bg-slate-950/60 p-5 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-primary/15 border border-primary/20">
+                          <Briefcase size={18} className="text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-slate-100 text-lg leading-tight">{member.name}</h4>
+                          <p className="text-slate-400 mt-1 text-sm leading-relaxed">{member.role}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
