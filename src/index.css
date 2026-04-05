@@ -180,7 +180,7 @@
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -3px, 0);
+    transform: translate3d(2px, -5px, 0);
   }
 }
 
@@ -210,9 +210,6 @@
   }
 
   .star-dot {
-    animation-name: star-twinkle, star-float;
-    animation-timing-function: ease-in-out, ease-in-out;
-    animation-iteration-count: infinite, infinite;
     box-shadow: 0 0 8px hsl(210 20% 98% / 0.16);
     will-change: opacity, transform;
   }

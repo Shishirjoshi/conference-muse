@@ -10,8 +10,8 @@ type Star = {
   delay: number;
 };
 
-const HERO_STAR_COUNT = 30;
-const AMBIENT_STAR_COUNT = 18;
+const HERO_STAR_COUNT = 36;
+const AMBIENT_STAR_COUNT = 24;
 
 const Starfield = () => {
   const heroStars = useMemo<Star[]>(() => {
@@ -20,8 +20,8 @@ const Starfield = () => {
       top: Math.random() * 55,
       size: Math.random() > 0.8 ? 3 : Math.random() > 0.45 ? 2 : 1,
       opacity: 0.26 + Math.random() * 0.28,
-      twinkleDuration: 3 + Math.random() * 6,
-      floatDuration: 12 + Math.random() * 16,
+      twinkleDuration: 6 + Math.random() * 10,
+      floatDuration: 22 + Math.random() * 24,
       delay: Math.random() * 10,
     }));
   }, []);
@@ -32,8 +32,8 @@ const Starfield = () => {
       top: Math.random() * 100,
       size: Math.random() > 0.7 ? 2 : 1,
       opacity: 0.08 + Math.random() * 0.16,
-      twinkleDuration: 7 + Math.random() * 10,
-      floatDuration: 20 + Math.random() * 22,
+      twinkleDuration: 10 + Math.random() * 14,
+      floatDuration: 30 + Math.random() * 30,
       delay: Math.random() * 12,
     }));
   }, []);
@@ -50,8 +50,7 @@ const Starfield = () => {
             width: `${star.size}px`,
             height: `${star.size}px`,
             opacity: star.opacity,
-            animationDuration: `${star.twinkleDuration}s, ${star.floatDuration}s`,
-            animationDelay: `${star.delay}s, ${star.delay / 2}s`,
+            animation: `star-twinkle ${star.twinkleDuration}s ease-in-out ${star.delay}s infinite, star-float ${star.floatDuration}s ease-in-out ${star.delay / 2}s infinite`,
           }}
         />
       ))}
@@ -66,8 +65,7 @@ const Starfield = () => {
             width: `${star.size}px`,
             height: `${star.size}px`,
             opacity: star.opacity,
-            animationDuration: `${star.twinkleDuration}s, ${star.floatDuration}s`,
-            animationDelay: `${star.delay}s, ${star.delay / 2}s`,
+            animation: `star-twinkle ${star.twinkleDuration}s ease-in-out ${star.delay}s infinite, star-float ${star.floatDuration}s ease-in-out ${star.delay / 2}s infinite`,
           }}
         />
       ))}
