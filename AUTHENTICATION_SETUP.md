@@ -239,7 +239,7 @@ CREATE TABLE bookings (
 
 ## Making User Accounts
 
-As an admin, you can create user accounts:
+As an admin, you can create user accounts:npm
 
 1. Login with admin credentials
 2. Go to Admin Panel

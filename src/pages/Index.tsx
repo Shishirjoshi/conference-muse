@@ -145,14 +145,14 @@ const Index = () => {
       <section className="py-24 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Our Story & Mission</h2>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Mission, Vission and Goal</h2>
             <p className="text-muted-foreground text-lg">Driving innovation and global connection through impactful events.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { title: "Our Mission", desc: "Build a global community where collaboration fuels innovation.", icon: "M" },
-              { title: "Our Vision", desc: "Connect brilliant minds and accelerate meaningful change.", icon: "V" },
-              { title: "Our Goal", desc: "Create unforgettable experiences that empower professionals.", icon: "G" },
+              { title: "Mission", desc: "Build a global community where collaboration fuels innovation.", icon: "Mission" },
+              { title: "Vission", desc: "Connect brilliant minds and accelerate meaningful change.", icon: "Vission" },
+              { title: "Goal", desc: "Create unforgettable experiences that empower professionals.", icon: "Goal" },
             ].map((item, i) => (
               <div key={i} className="p-10 rounded-2xl bg-gradient-to-br from-card to-card/80 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <div className="text-3xl font-bold text-primary mb-6">{item.icon}</div>
