@@ -72,7 +72,7 @@ const Footer = () => {
 
       <footer className="border-t border-border/30 bg-gradient-to-b from-card to-card/95 backdrop-blur-lg">
         <div className="container mx-auto px-6 py-20">
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 mb-16">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5 mb-16">
             {/* Brand */}
             <div>
               <div className="mb-6 flex items-center gap-3">
@@ -164,6 +164,19 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+
+            {/* UML Diagram */}
+            <div>
+              <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Project Docs</h4>
+              <div className="rounded-xl border border-border/50 bg-muted/20 p-4 space-y-3">
+                <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                  Explore architecture diagrams for this project including component, class, and sequence UML views.
+                </p>
+                <Link to="/uml-diagram" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+                  Open UML Diagram Page
+                </Link>
+              </div>
+            </div>
           </div>
 
           <div className="border-t border-border/30 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -182,6 +195,10 @@ const Footer = () => {
               <a href="/#contact" onClick={handleContactClick} className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
                 Contact Us
               </a>
+              <span className="text-border">•</span>
+              <Link to="/uml-diagram" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
+                UML Diagram
+              </Link>
             </div>
           </div>
         </div>

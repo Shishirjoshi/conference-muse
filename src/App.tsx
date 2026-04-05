@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 import Starfield from "./components/Starfield";
 import Index from "./pages/Index.tsx";
 import Events from "./pages/Events.tsx";
@@ -12,6 +13,7 @@ import EventDetail from "./pages/EventDetail.tsx";
 import Login from "./pages/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import OrganizerDashboard from "./pages/OrganizerDashboard.tsx";
+import UmlDiagram from "./pages/UmlDiagram.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/events" element={<Events />} />
@@ -47,6 +50,7 @@ const App = () => (
                     </ProtectedRoute>
                   } 
                 />
+                <Route path="/uml-diagram" element={<UmlDiagram />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
