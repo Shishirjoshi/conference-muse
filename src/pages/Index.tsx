@@ -227,10 +227,18 @@ const Index = () => {
               { title: "Vission", desc: "Connect brilliant minds and accelerate meaningful change.", icon: "Vission" },
               { title: "Goal", desc: "Create unforgettable experiences that empower professionals.", icon: "Goal" },
             ].map((item, i) => (
-              <div key={i} className="p-10 rounded-2xl bg-gradient-to-br from-card to-card/80 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="text-3xl font-bold text-primary mb-6">{item.icon}</div>
-                <h3 className="font-heading text-2xl font-bold text-foreground mb-4">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
+              <div
+                key={i}
+                className="group relative overflow-hidden p-10 rounded-2xl bg-gradient-to-br from-card via-card/95 to-card/80 border border-border/50 shadow-lg card-hover"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-accent/0 to-primary/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute -right-10 top-0 h-40 w-40 rounded-full bg-primary/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute -left-12 bottom-0 h-40 w-40 rounded-full bg-accent/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative z-10">
+                  <div className="text-3xl font-bold text-primary mb-6 transition-transform duration-300 group-hover:scale-105">{item.icon}</div>
+                  <h3 className="font-heading text-2xl font-bold text-foreground mb-4 transition-colors duration-300 group-hover:text-primary">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
