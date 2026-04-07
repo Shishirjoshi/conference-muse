@@ -133,6 +133,47 @@ sequenceDiagram
   D-->>U: Render booking cards
 `,
   },
+  {
+    title: "Project Flowchart",
+    description: "End-to-end user and backend flow through the application.",
+    code: `
+flowchart TD
+  Start([User Opens App]) --> Load[React App Loads]
+  Load --> CheckAuth{Token in localStorage?}
+
+  CheckAuth -- No --> Public[Browse Home and Events]
+  Public --> LoginPage[Open Login Page]
+
+  CheckAuth -- Yes --> Verify[GET /api/auth/me]
+  Verify --> Valid{Token Valid?}
+  Valid -- No --> LoginPage
+  Valid -- Yes --> Dashboard[Open Dashboard]
+
+  LoginPage --> SubmitCreds[Submit Email and Password]
+  SubmitCreds --> LoginAPI[POST /api/auth/login]
+  LoginAPI --> UserLookup[Find User in SQLite]
+  UserLookup --> PassCheck{Password Match?}
+  PassCheck -- No --> LoginError[Show Login Error]
+  PassCheck -- Yes --> IssueJWT[Generate JWT]
+  IssueJWT --> SaveToken[Save Token + User]
+  SaveToken --> Dashboard
+
+  Dashboard --> BookingAPI[GET /api/bookings]
+  BookingAPI --> BookingDB[Load Bookings from SQLite]
+  BookingDB --> BookingView[Render Booking Cards]
+
+  Dashboard --> AdminCheck{Role is admin?}
+  AdminCheck -- No --> EndUser([Continue as Participant])
+  AdminCheck -- Yes --> AdminPanel[Open Organizer Dashboard]
+  AdminPanel --> UserCRUD[Create, Update, Delete Users]
+  UserCRUD --> UsersDB[(users table)]
+
+  Public --> ContactForm[Submit Contact Form]
+  ContactForm --> ContactAPI[POST /api/contact-messages]
+  ContactAPI --> ContactDB[(contact_messages table)]
+  ContactDB --> ContactSuccess[Show Success Message]
+`,
+  },
 ];
 
 const ensureMermaidLoaded = async () => {
