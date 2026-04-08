@@ -310,7 +310,7 @@ const Index = () => {
                     disabled={isSubmittingContact}
                     className="w-full md:w-auto px-8 py-3 text-white bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/20 disabled:opacity-70"
                   >
-                    {isSubmittingContact ? "Sending..." : "Submit Message"}
+                      {isSubmittingContact ? "Sending..." : "Contact Us"}
                   </Button>
                   {contactFeedback && (
                     <p
