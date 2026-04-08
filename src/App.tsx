@@ -13,6 +13,7 @@ import EventDetail from "./pages/EventDetail.tsx";
 import Login from "./pages/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import OrganizerDashboard from "./pages/OrganizerDashboard.tsx";
+import MarketingDashboardDemo from "./pages/MarketingDashboardDemo.tsx";
 import UmlDiagram from "./pages/UmlDiagram.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -50,6 +51,7 @@ const App = () => (
                     </ProtectedRoute>
                   } 
                 />
+                <Route path="/dashboard-demo" element={<MarketingDashboardDemo />} />
                 <Route path="/uml-diagram" element={<UmlDiagram />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
