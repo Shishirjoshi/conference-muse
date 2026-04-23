@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Users, Calendar, Globe, Play, Clock, Sparkles, User, Mail, MessageSquare, Briefcase, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EventCard from "@/components/EventCard";
@@ -138,13 +139,20 @@ const Index = () => {
 
             <div className="flex flex-wrap justify-center gap-4 mb-20">
               <Link to="/events">
-                <button className="btn-primary gap-3">
+                <Button
+                  size="lg"
+                  className="rounded-lg px-8 py-6 text-base font-semibold gap-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-white"
+                >
                   Explore Events <ArrowRight size={18} />
-                </button>
+                </Button>
               </Link>
-              <button className="btn-secondary gap-3">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-lg px-8 py-6 text-base font-semibold gap-3 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 shadow-md hover:shadow-lg"
+              >
                 <Play size={18} /> Learn More
-              </button>
+              </Button>
             </div>
 
             <div className="glass rounded-2xl p-8 mb-12 max-w-2xl mx-auto shadow-lg border border-border/50">
@@ -196,9 +204,12 @@ const Index = () => {
           </div>
           <div className="text-center">
             <Link to="/events">
-              <button className="btn-primary gap-3">
+              <Button
+                size="lg"
+                className="rounded-lg px-10 py-6 text-base font-semibold gap-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-white"
+              >
                 View All Events <ArrowRight size={20} />
-              </button>
+              </Button>
             </Link>
           </div>
         </div>
@@ -291,13 +302,13 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <button
+                  <Button
                     type="submit"
                     disabled={isSubmittingContact}
-                    className="btn-primary disabled:opacity-50"
+                    className="w-full md:w-auto px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold shadow-lg disabled:opacity-50"
                   >
                       {isSubmittingContact ? "Sending..." : "Contact Us"}
-                  </button>
+                  </Button>
                   {contactFeedback && (
                     <p
                       className={`text-sm font-medium ${
