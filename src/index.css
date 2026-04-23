@@ -303,11 +303,6 @@
     @apply relative overflow-hidden bg-gradient-to-r from-card via-background to-card;
     animation: shimmer 2s infinite;
   }
-
-  @keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-  }
 }
 
 @keyframes fadeInUp {
@@ -416,25 +411,6 @@
   }
   100% {
     background-position: 1000px 0;
-  }
-}
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
   }
 }
 
