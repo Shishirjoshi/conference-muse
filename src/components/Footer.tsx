@@ -24,32 +24,32 @@ const Footer = () => {
   return (
     <>
       {/* Newsletter Section */}
-      <section className="py-24 bg-gradient-to-r from-primary via-accent to-secondary relative overflow-hidden">
+      <section className="py-24 bg-primary relative overflow-hidden">
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-white/10 rounded-full blur-3xl -mb-36" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-48 -mt-48" />
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-white/5 rounded-full blur-3xl -mb-36" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Stay Connected to Our Latest Events
+              Stay Updated
             </h2>
-            <p className="text-white/90 text-lg mb-10 leading-relaxed font-medium">
-              Get instant updates on upcoming conferences, exclusive announcements, and inspiring dialogue delivered straight to your inbox.
+            <p className="text-white/90 text-lg mb-10 leading-relaxed font-normal">
+              Subscribe to get notified about upcoming conferences, exclusive announcements, and industry insights.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10">
               <Input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:border-white/50 focus:bg-white/20 rounded-full backdrop-blur-sm text-base py-6"
+                className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:border-white/50 focus:bg-white/20 rounded-lg backdrop-blur-sm text-base py-3"
               />
-              <Button className="bg-white text-primary hover:bg-white/90 gap-2 px-8 rounded-full font-bold text-base py-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                Subscribe <Send size={18} />
+              <Button className="bg-white text-primary hover:bg-white/90 gap-2 px-6 rounded-lg font-semibold text-base py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+                Subscribe <Send size={16} />
               </Button>
             </div>
 
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-4">
               {[
                 { Icon: Facebook, label: "Facebook" },
                 { Icon: Twitter, label: "Twitter" },
@@ -59,10 +59,10 @@ const Footer = () => {
                 <a
                   key={label}
                   href="#"
-                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 hover:scale-110 border border-white/20 backdrop-blur-sm"
+                  className="p-3 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all duration-300 border border-white/20 backdrop-blur-sm"
                   title={label}
                 >
-                  <Icon size={22} />
+                  <Icon size={20} />
                 </a>
               ))}
             </div>
@@ -70,22 +70,22 @@ const Footer = () => {
         </div>
       </section>
 
-      <footer className="border-t border-border/30 bg-gradient-to-b from-card to-card/95 backdrop-blur-lg">
+      <footer className="border-t border-border bg-card">
         <div className="container mx-auto px-6 py-20">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5 mb-16">
             {/* Brand */}
             <div>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-accent to-primary shadow-lg shadow-primary/20 ring-1 ring-white/10">
-                  <span className="font-heading text-base font-extrabold text-white leading-none tracking-tight">E</span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg">
+                  <span className="font-heading text-base font-bold text-white leading-none">E</span>
                 </div>
                 <div className="flex flex-col leading-none">
-                  <span className="font-heading text-2xl font-extrabold tracking-tight gradient-text">EventHub</span>
-                  <span className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">Events that connect</span>
+                  <span className="font-heading text-xl font-bold text-primary">EventHub</span>
+                  <span className="text-xs font-semibold text-muted-foreground">Professional Events</span>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                A powerful gathering of visionaries and industry experts united by innovation, inspiring dialogue, and meaningful connections that spark transformation worldwide.
+              <p className="text-sm text-muted-foreground leading-relaxed font-normal">
+                Connecting professionals through world-class conferences, seminars, and networking events that drive innovation and meaningful business relationships.
               </p>
             </div>
 

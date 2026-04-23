@@ -36,15 +36,15 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/20 bg-gradient-to-r from-card/95 to-card/90 backdrop-blur-xl shadow-lg">
+    <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300 group">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-accent to-primary shadow-lg shadow-primary/20 ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-300">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent/70 shadow-md group-hover:shadow-lg transition-all duration-300">
             <span className="font-heading text-lg font-extrabold text-white leading-none tracking-tight">E</span>
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-heading text-2xl font-extrabold tracking-tight gradient-text">EventHub</span>
-            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">Events that connect</span>
+            <span className="font-heading text-xl font-bold text-primary">EventHub</span>
+            <span className="text-xs font-semibold text-muted-foreground">Professional Events</span>
           </div>
         </Link>
 
@@ -61,26 +61,26 @@ const Navbar = () => {
             >
               {link.label}
               {location.pathname === link.to ? (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
               ) : (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               )}
             </Link>
           ))}
 
           {isAuthenticated ? (
-            <div className="flex items-center gap-4 border-l border-border/30 pl-8">
+            <div className="flex items-center gap-4 border-l border-border pl-8">
               <div className="text-right hidden sm:block pr-3">
                 <p className="text-xs font-bold text-primary uppercase tracking-widest">
-                  {user?.role === "admin" ? "Admin" : "User"}
+                  {user?.role === "admin" ? "Admin" : "Attendee"}
                 </p>
-                <p className="text-sm font-bold text-foreground">{user?.fullName}</p>
+                <p className="text-sm font-semibold text-foreground">{user?.fullName}</p>
               </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="rounded-full gap-2 hover:bg-destructive/15 hover:text-destructive transition-all duration-200 text-muted-foreground font-semibold hover:scale-105"
+                className="rounded-lg gap-2 hover:bg-destructive/10 hover:text-destructive transition-all duration-200 text-muted-foreground font-semibold"
               >
                 <LogOut size={16} />
                 Logout
@@ -90,9 +90,9 @@ const Navbar = () => {
             <Link to="/login">
               <Button
                 size="sm"
-                className="rounded-full px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold hover:scale-105 text-white"
+                className="rounded-lg px-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold text-white"
               >
-                Login
+                Sign In
               </Button>
             </Link>
           )}

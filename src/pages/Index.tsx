@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Users, Calendar, Globe, Play, Clock, Sparkles, User, Mail, MessageSquare, Briefcase } from "lucide-react";
+import { ArrowRight, Users, Calendar, Globe, Play, Clock, Sparkles, User, Mail, MessageSquare, Briefcase, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -115,73 +115,73 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-transparent">
       <Navbar />
 
-      <section className="relative overflow-hidden min-h-screen flex items-center">
+      <section className="relative overflow-hidden min-h-screen flex items-center bg-background">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-1/2 w-[32rem] h-[32rem] -translate-x-1/2 -translate-y-1/2 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute left-1/2 top-1/2 w-[28rem] h-[28rem] -translate-x-1/2 -translate-y-1/2 bg-accent/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute left-1/2 top-1/2 w-[24rem] h-[24rem] -translate-x-1/2 -translate-y-1/2 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute left-1/2 top-1/2 w-[32rem] h-[32rem] -translate-x-1/2 -translate-y-1/2 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute left-1/2 top-1/2 w-[28rem] h-[28rem] -translate-x-1/2 -translate-y-1/2 bg-accent/8 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute left-1/2 top-1/2 w-[24rem] h-[24rem] -translate-x-1/2 -translate-y-1/2 bg-secondary/8 rounded-full blur-3xl animate-pulse" />
         </div>
 
         <div className="container mx-auto px-6 py-32 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border border-primary/30 backdrop-blur-sm mb-8">
-              <Sparkles size={18} className="text-primary" />
-              <span className="text-sm font-semibold text-primary">Welcome to EventHub</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/8 border border-primary/30 backdrop-blur-sm mb-8">
+              <Sparkles size={16} className="text-primary" />
+              <span className="text-xs font-semibold text-primary uppercase tracking-wider">Professional Conference Platform</span>
             </div>
 
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground mb-8 tracking-tight">
-              <span className="gradient-text">Connecting minds</span> to shape tomorrow's big ideas
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground mb-6 tracking-tight">
+              <span className="text-primary">Discover</span> events that inspire and transform
             </h1>
 
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-3xl mx-auto mb-12 leading-relaxed">
-              Join thousands of innovators, leaders, and visionaries at inspiring conferences that spark transformation and create lasting connections.
+            <p className="text-lg md:text-xl text-muted-foreground font-normal max-w-3xl mx-auto mb-12 leading-relaxed">
+              Connect with industry leaders, network with professionals, and attend world-class conferences that shape the future. Your next opportunity awaits.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-20">
               <Link to="/events">
                 <Button
                   size="lg"
-                  className="rounded-full px-10 py-6 text-lg font-bold gap-3 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 btn-shine text-white"
+                  className="rounded-lg px-8 py-6 text-base font-semibold gap-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-white"
                 >
-                  Explore Events <ArrowRight size={20} />
+                  Explore Events <ArrowRight size={18} />
                 </Button>
               </Link>
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full px-10 py-6 text-lg font-bold gap-3 border-2 border-primary text-primary hover:bg-primary/10 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                className="rounded-lg px-8 py-6 text-base font-semibold gap-3 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 shadow-md hover:shadow-lg"
               >
-                <Play size={20} /> Watch Video
+                <Play size={18} /> Learn More
               </Button>
             </div>
 
-            <div className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-xl rounded-3xl p-10 mb-12 max-w-3xl mx-auto border border-border/50 shadow-2xl">
-              <h3 className="text-2xl md:text-3xl font-semibold text-foreground mb-4 tracking-tight">Next Major Event In</h3>
-              <div className="flex justify-center items-center gap-3 text-lg text-muted-foreground font-semibold mb-4">
-                <Clock size={22} className="text-primary" />
-                <span className="font-mono text-2xl font-bold text-foreground tracking-wide">
+            <div className="glass rounded-2xl p-8 mb-12 max-w-2xl mx-auto shadow-lg border border-border/50">
+              <h3 className="text-xl font-semibold text-foreground mb-4">Upcoming Major Conference</h3>
+              <div className="flex justify-center items-center gap-3 text-lg text-muted-foreground font-semibold mb-2">
+                <Clock size={20} className="text-primary" />
+                <span className="font-mono text-2xl font-bold text-primary tracking-wide">
                   {timeLeft.days}d {timeLeft.hours.toString().padStart(2, "0")}h {timeLeft.minutes.toString().padStart(2, "0")}m {timeLeft.seconds.toString().padStart(2, "0")}s
                 </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
-                { icon: Calendar, label: "Events", value: "150+" },
+                { icon: Calendar, label: "Conferences", value: "150+" },
                 { icon: Users, label: "Attendees", value: "10K+" },
                 { icon: Globe, label: "Countries", value: "30+" },
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="p-8 rounded-2xl bg-gradient-to-br from-card to-card/80 border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+                  className="p-6 rounded-xl bg-card border border-border shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 group"
                 >
                   <div className="flex justify-center mb-4">
-                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 group-hover:scale-110 transition-transform duration-300">
-                      <stat.icon size={36} className="text-primary" />
+                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-all duration-300">
+                      <stat.icon size={32} className="text-primary" />
                     </div>
                   </div>
-                  <p className="font-heading text-5xl font-bold text-foreground mb-2">{stat.value}</p>
-                  <p className="text-muted-foreground font-semibold">{stat.label}</p>
+                  <p className="font-heading text-4xl font-bold text-foreground mb-2">{stat.value}</p>
+                  <p className="text-muted-foreground font-semibold text-sm">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -206,38 +206,35 @@ const Index = () => {
             <Link to="/events">
               <Button
                 size="lg"
-                className="rounded-full px-12 py-6 text-lg font-bold gap-3 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 text-white"
+                className="rounded-lg px-10 py-6 text-base font-semibold gap-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-white"
               >
-                View All Events <ArrowRight size={22} />
+                View All Events <ArrowRight size={20} />
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-b from-primary/5 to-background">
+      <section className="py-24 bg-primary/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Mission, Vission and Goal</h2>
-            <p className="text-muted-foreground text-lg">Driving innovation and global connection through impactful events.</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Our Purpose</h2>
+            <p className="text-muted-foreground text-lg">Building a platform that connects minds and accelerates innovation.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { title: "Mission", desc: "Build a global community where collaboration fuels innovation.", icon: "Mission" },
-              { title: "Vission", desc: "Connect brilliant minds and accelerate meaningful change.", icon: "Vission" },
-              { title: "Goal", desc: "Create unforgettable experiences that empower professionals.", icon: "Goal" },
+              { title: "Mission", desc: "Build a global community where collaboration fuels innovation.", icon: "🎯" },
+              { title: "Vision", desc: "Connect brilliant minds and accelerate meaningful change.", icon: "🌍" },
+              { title: "Impact", desc: "Create unforgettable experiences that empower professionals.", icon: "⚡" },
             ].map((item, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden p-10 rounded-2xl bg-gradient-to-br from-card via-card/95 to-card/80 border border-border/50 shadow-lg card-hover"
+                className="group relative overflow-hidden p-8 rounded-xl bg-card border border-border shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-accent/0 to-primary/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="absolute -right-10 top-0 h-40 w-40 rounded-full bg-primary/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="absolute -left-12 bottom-0 h-40 w-40 rounded-full bg-accent/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative z-10">
-                  <div className="text-3xl font-bold text-primary mb-6 transition-transform duration-300 group-hover:scale-105">{item.icon}</div>
-                  <h3 className="font-heading text-2xl font-bold text-foreground mb-4 transition-colors duration-300 group-hover:text-primary">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
+                  <div className="text-4xl font-bold text-primary mb-4 transition-transform duration-300 group-hover:scale-110">{item.icon}</div>
+                  <h3 className="font-heading text-2xl font-bold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed font-normal">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -245,22 +242,22 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-24 bg-slate-950 text-slate-100">
+      <section id="contact" className="py-24 bg-card">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4">Contact Us</h2>
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto">Let&apos;s discuss your next conference collaboration and build something remarkable together.</p>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">Get In Touch</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Questions about conferences? We're here to help.</p>
             </div>
 
             <div className="grid lg:grid-cols-5 gap-8 items-start">
-              <div className="lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl p-6 md:p-8">
-                <h3 className="font-heading text-2xl font-semibold mb-6">Send A Message</h3>
+              <div className="lg:col-span-3 rounded-xl border border-border bg-background shadow-card p-6 md:p-8">
+                <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">Send A Message</h3>
                 <form className="space-y-5" onSubmit={handleContactSubmit}>
                   <div>
-                    <label htmlFor="contact-name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                    <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-2">Name</label>
                     <div className="relative">
-                      <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                      <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                       <input
                         id="contact-name"
                         type="text"
@@ -268,15 +265,15 @@ const Index = () => {
                         placeholder="Your full name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
+                        className="input-field pl-10"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-2">Email</label>
                     <div className="relative">
-                      <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                      <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                       <input
                         id="contact-email"
                         type="email"
@@ -284,15 +281,15 @@ const Index = () => {
                         placeholder="you@company.com"
                         value={contactForm.email}
                         onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all"
+                        className="input-field pl-10"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-2">Message</label>
                     <div className="relative">
-                      <MessageSquare size={18} className="absolute left-3 top-4 text-slate-500" />
+                      <MessageSquare size={18} className="absolute left-3 top-4 text-muted-foreground" />
                       <textarea
                         id="contact-message"
                         rows={5}
@@ -300,7 +297,7 @@ const Index = () => {
                         placeholder="Write your message..."
                         value={contactForm.message}
                         onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-950/80 pl-10 pr-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/80 focus:border-primary transition-all resize-none"
+                        className="input-field pl-10 resize-none"
                       />
                     </div>
                   </div>
@@ -308,14 +305,14 @@ const Index = () => {
                   <Button
                     type="submit"
                     disabled={isSubmittingContact}
-                    className="w-full md:w-auto px-8 py-3 text-white bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/20 disabled:opacity-70"
+                    className="w-full md:w-auto px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold shadow-lg disabled:opacity-50"
                   >
                       {isSubmittingContact ? "Sending..." : "Contact Us"}
                   </Button>
                   {contactFeedback && (
                     <p
                       className={`text-sm font-medium ${
-                        contactFeedback.type === "success" ? "text-emerald-400" : "text-rose-400"
+                        contactFeedback.type === "success" ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
                       }`}
                     >
                       {contactFeedback.message}
@@ -324,28 +321,32 @@ const Index = () => {
                 </form>
               </div>
 
-              <div className="lg:col-span-2 rounded-2xl border border-slate-800 bg-slate-900/60 shadow-2xl p-6 md:p-8">
-                <h3 className="font-heading text-2xl font-semibold mb-6">Team Members</h3>
+              <div className="lg:col-span-2 rounded-xl border border-border bg-card shadow-card p-6 md:p-8">
+                <h3 className="font-heading text-2xl font-semibold mb-6 text-foreground">Team Members</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4">
                   {[
-                    { name: "Shishir Joshi", role: "UI/UX Designer & Frontend Developer" },
-                    { name: "Nabin Dhakal", role: "Backend Developer" },
-                    { name: "Amshika Bhushal", role: "Project Manager / Content Strategist" },
+                    { name: "Shishir Joshi", role: "UI/UX Designer & Frontend Developer", github: "https://github.com/ShishirJoshi" },
+                    { name: "Nabin Dhakal", role: "Backend Developer", github: "https://github.com/NabinDhakal" },
+                    { name: "Amshika Bhushal", role: "Project Manager / Content Strategist", github: "https://github.com/AmshikaBhushal" },
                   ].map((member) => (
-                    <article
+                    <a
                       key={member.name}
-                      className="rounded-xl border border-slate-700/80 bg-slate-950/60 p-5 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-lg border border-border bg-background p-5 shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 cursor-pointer group"
                     >
                       <div className="flex items-start gap-3">
-                        <div className="p-2 rounded-lg bg-primary/15 border border-primary/20">
+                        <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-all duration-300">
                           <Briefcase size={18} className="text-primary" />
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-slate-100 text-lg leading-tight">{member.name}</h4>
-                          <p className="text-slate-400 mt-1 text-sm leading-relaxed">{member.role}</p>
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-foreground text-lg leading-tight group-hover:text-primary transition-colors duration-300">{member.name}</h4>
+                          <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{member.role}</p>
                         </div>
+                        <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors duration-300 flex-shrink-0 mt-1" />
                       </div>
-                    </article>
+                    </a>
                   ))}
                 </div>
               </div>
