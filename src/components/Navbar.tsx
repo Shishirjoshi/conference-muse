@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 
 interface NavLink {
@@ -76,24 +75,19 @@ const Navbar = () => {
                 </p>
                 <p className="text-sm font-semibold text-foreground">{user?.fullName}</p>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={handleLogout}
-                className="rounded-lg gap-2 hover:bg-destructive/10 hover:text-destructive transition-all duration-200 text-muted-foreground font-semibold"
+                className="btn-ghost gap-2 text-muted-foreground"
               >
                 <LogOut size={16} />
                 Logout
-              </Button>
+              </button>
             </div>
           ) : (
             <Link to="/login">
-              <Button
-                size="sm"
-                className="rounded-lg px-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold text-white"
-              >
+              <button className="btn-primary">
                 Sign In
-              </Button>
+              </button>
             </Link>
           )}
         </div>
@@ -129,27 +123,22 @@ const Navbar = () => {
                   {user?.role === "admin" ? "Admin" : "User"}
                 </p>
                 <p className="text-sm font-bold text-foreground mb-4">{user?.fullName}</p>
-                <Button
-                  variant="outline"
-                  size="sm"
+                <button
                   onClick={() => {
                     setMobileOpen(false);
                     handleLogout();
                   }}
-                  className="w-full rounded-lg gap-2 hover:bg-destructive/15 hover:text-destructive transition-all duration-200 font-semibold"
+                  className="btn-ghost w-full gap-2"
                 >
                   <LogOut size={16} />
                   Logout
-                </Button>
+                </button>
               </div>
             ) : (
               <Link to="/login" onClick={() => setMobileOpen(false)}>
-                <Button
-                  size="sm"
-                  className="w-full rounded-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 transition-all duration-300 font-semibold text-white"
-                >
+                <button className="btn-primary w-full">
                   Login
-                </Button>
+                </button>
               </Link>
             )}
           </div>

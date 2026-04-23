@@ -1,7 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   const location = useLocation();
@@ -39,14 +37,14 @@ const Footer = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10">
-              <Input
+              <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:border-white/50 focus:bg-white/20 rounded-lg backdrop-blur-sm text-base py-3"
+                className="flex-1 bg-white/15 border border-white/30 text-white placeholder:text-white/60 focus:border-white/50 focus:bg-white/20 rounded-lg backdrop-blur-sm text-base py-3 px-4 outline-none transition-all duration-200"
               />
-              <Button className="bg-white text-primary hover:bg-white/90 gap-2 px-6 rounded-lg font-semibold text-base py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+              <button className="btn-primary bg-white text-primary hover:bg-white/90 gap-2 px-6 rounded-lg font-semibold text-base py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                 Subscribe <Send size={16} />
-              </Button>
+              </button>
             </div>
 
             <div className="flex justify-center gap-4">
