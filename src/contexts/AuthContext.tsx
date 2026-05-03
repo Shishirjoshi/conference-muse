@@ -22,12 +22,12 @@ export function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Verify token on mount
+  // Verify token when token or verifyToken changes
   useEffect(() => {
     if (token) {
       verifyToken(token);
     }
-  }, []);
+  }, [token, verifyToken]);
 
   const logout = useCallback(() => {
     setUser(null);
