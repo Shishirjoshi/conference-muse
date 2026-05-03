@@ -7,27 +7,37 @@ const router = express.Router();
 
 // Middleware to verify token
 function authMiddleware(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
-  
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
 
-  const payload = verifyToken(token);
-  if (!payload) {
-    return res.status(401).json({ error: 'Invalid token' });
-  }
+    if (!token) {
+      return res.status(401).json({ error: 'No token provided' });
+    }
 
-  req.user = payload;
-  next();
+    const payload = verifyToken(token);
+    if (!payload) {
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+
+    req.user = payload;
+    return next();
+  } catch (err) {
+    console.error('Auth middleware error:', err);
+    return res.status(401).json({ error: 'Invalid or expired token' });
+  }
 }
 
 // Middleware to check if user is admin
 function adminMiddleware(req, res, next) {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ error: 'Admin access required' });
+  try {
+    if (!req.user || req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+    return next();
+  } catch (err) {
+    console.error('Admin middleware error:', err);
+    return res.status(500).json({ error: 'Admin check failed' });
   }
-  next();
 }
 
 // POST /api/auth/login
