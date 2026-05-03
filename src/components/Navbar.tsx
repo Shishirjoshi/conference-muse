@@ -38,7 +38,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300 group">
+        <Link to="/" aria-label="Home" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300 group">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent/70 shadow-md group-hover:shadow-lg transition-all duration-300">
             <span className="font-heading text-lg font-extrabold text-white leading-none tracking-tight">E</span>
           </div>
@@ -53,6 +53,8 @@ const Navbar = () => {
             <Link
               key={link.to}
               to={link.to}
+              aria-label={`Navigate to ${link.label}`}
+              aria-current={location.pathname === link.to ? 'page' : undefined}
               className={`relative text-sm font-semibold transition-all duration-300 py-2 group ${
                 location.pathname === link.to
                   ? "text-primary"
@@ -81,13 +83,14 @@ const Navbar = () => {
                 size="sm"
                 onClick={handleLogout}
                 className="rounded-lg gap-2 hover:bg-destructive/10 hover:text-destructive transition-all duration-200 text-muted-foreground font-semibold"
+                aria-label="Logout"
               >
                 <LogOut size={16} />
                 Logout
               </Button>
             </div>
           ) : (
-            <Link to="/login">
+            <Link to="/login" aria-label="Sign in">
               <Button
                 size="sm"
                 className="rounded-lg px-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold text-white"
@@ -101,6 +104,8 @@ const Navbar = () => {
         <button
           className="md:hidden text-foreground hover:text-primary transition-colors duration-300 p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -113,6 +118,8 @@ const Navbar = () => {
               <Link
                 key={link.to}
                 to={link.to}
+                aria-label={`Navigate to ${link.label}`}
+                aria-current={location.pathname === link.to ? 'page' : undefined}
                 onClick={() => setMobileOpen(false)}
                 className={`px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
                   location.pathname === link.to
