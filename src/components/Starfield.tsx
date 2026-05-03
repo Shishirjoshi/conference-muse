@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 
 type Star = {
   left: number;
@@ -73,4 +73,4 @@ const Starfield = () => {
   );
 };
 
-export default Starfield;
+export default memo(Starfield);
