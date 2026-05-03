@@ -2,7 +2,7 @@ import { ImageIcon } from "lucide-react";
 
 interface ImageWithFallbackProps {
   src: string;
-  alt: string;
+  alt?: string;
   className?: string;
   fallbackClassName?: string;
   loading?: "lazy" | "eager";
@@ -10,7 +10,7 @@ interface ImageWithFallbackProps {
 
 const ImageWithFallback = ({
   src,
-  alt,
+  alt = "",
   className = "",
   fallbackClassName = "",
   loading = "lazy"
