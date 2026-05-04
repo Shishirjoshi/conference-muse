@@ -22,13 +22,6 @@ export function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Verify token when token or verifyToken changes
-  useEffect(() => {
-    if (token) {
-      verifyToken(token);
-    }
-  }, [token, verifyToken]);
-
   const logout = useCallback(() => {
     setUser(null);
     setToken(null);
@@ -73,6 +66,13 @@ export function AuthProvider({ children }) {
       setIsLoading(false);
     }
   }, [logout]);
+
+  // Verify token when token or verifyToken changes
+  useEffect(() => {
+    if (token) {
+      verifyToken(token);
+    }
+  }, [token, verifyToken]);
 
   const login = useCallback(async (email, password) => {
     try {
