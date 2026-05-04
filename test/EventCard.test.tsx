@@ -2,8 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import EventCard from '../src/components/EventCard';
+import type { Event } from '../src/data/events';
 
-const mockEvent = {
+const mockEvent: Event = {
   id: '1',
   title: 'Test Event',
   image: '/test.jpg',
@@ -18,7 +19,7 @@ describe('EventCard', () => {
   it('renders event title and details', () => {
     render(
       <MemoryRouter>
-        <EventCard event={mockEvent as any} />
+        <EventCard event={mockEvent} />
       </MemoryRouter>
     );
 
