@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   ArrowRight,
   Calendar,
@@ -17,6 +17,8 @@ import Footer from "@/components/Footer";
 import { events } from "@/data/events";
 import { useAuth } from "@/hooks/useAuth";
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 interface Booking {
   id: number;
   user_id: number;
@@ -29,18 +31,8 @@ const Dashboard = () => {
   const { user, token } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-  useEffect(() => {
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
-    fetchBookings();
-  }, [token, API_URL]);
-
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`${API_URL}/bookings`, {
@@ -58,7 +50,16 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    fetchBookings();
+  }, [token, fetchBookings]);
 
   const userBookings = bookings.map(booking => {
     const event = events.find(c => c.id.toString() === booking.conference_id);
