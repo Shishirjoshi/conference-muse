@@ -77,7 +77,7 @@ const Login = () => {
             {/* Login Form */}
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">Email Address</label>
+                <label className="text-sm font-medium text-foreground mb-2 block">Email</label>
                 <div className="relative">
                   <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
