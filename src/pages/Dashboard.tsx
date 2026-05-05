@@ -110,7 +110,7 @@ const Dashboard = () => {
                   <Sparkles size={12} className="text-accent" />
                   Your workspace
                 </span>
-                <span>Premium event dashboard</span>
+                <span>Premium event studio</span>
               </div>
 
               <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
