@@ -246,7 +246,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">Get In Touch</h2>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">Contact Us</h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Questions about conferences? We're here to help.</p>
             </div>
 
