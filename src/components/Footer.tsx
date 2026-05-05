@@ -91,7 +91,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Quick Links</h4>
+              <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Useful Links</h4>
               <div className="flex flex-col gap-3">
                 {[
                   { label: "Home", to: "/" },
