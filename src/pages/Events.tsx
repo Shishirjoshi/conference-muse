@@ -30,7 +30,7 @@ const Events = () => {
       <div className="container mx-auto px-6 py-20">
         <div className="mb-16 text-center">
           <h1 className="font-heading text-4xl font-bold text-foreground mb-4 md:text-5xl">
-            All Events
+            All Sessions
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Browse and filter events that match your interests
