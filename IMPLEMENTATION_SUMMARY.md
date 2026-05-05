@@ -5,7 +5,7 @@
 A complete restricted authentication system has been implemented for the EventHub application. The system includes:
 - Disabled public registration
 - Admin-controlled user creation
-- Role-based access control (Admin/Participant)
+- Role-based access control
 - Secure JWT-based authentication
 - Password hashing with bcrypt
 - Token-based sessions
