@@ -118,7 +118,7 @@ const Login = () => {
                   </>
                 ) : (
                   <>
-                    Sign In
+                    Log In
                     <ArrowRight size={16} />
                   </>
                 )}
