@@ -143,7 +143,7 @@ const Index = () => {
                   size="lg"
                   className="rounded-lg px-8 py-6 text-base font-semibold gap-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-white"
                 >
-                  Explore Events <ArrowRight size={18} />
+                    Explore Talks <ArrowRight size={18} />
                 </Button>
               </Link>
               <Button
