@@ -43,7 +43,7 @@ const Events = () => {
             <div className="rounded-xl border border-border bg-card p-8 shadow-card space-y-10 sticky top-24">
               {/* Search */}
               <div>
-                <label className="text-sm font-semibold text-foreground mb-4 block">Search Events</label>
+                <label className="text-sm font-semibold text-foreground mb-4 block">Search Sessions</label>
                 <div className="relative">
                   <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
