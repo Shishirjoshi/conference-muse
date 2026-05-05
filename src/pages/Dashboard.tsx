@@ -153,7 +153,7 @@ const Dashboard = () => {
                     Quick Actions
                   </p>
                   <h2 className="mt-2 font-heading text-2xl font-semibold text-foreground">
-                    Move faster
+                    Move smoother
                   </h2>
                 </div>
                 <div className="rounded-2xl bg-primary/10 p-3 text-primary ring-1 ring-primary/15">
