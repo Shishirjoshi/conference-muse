@@ -52,7 +52,7 @@ const Login = () => {
                 <span className="font-heading text-2xl font-bold text-primary-foreground">CH</span>
               </div>
               <h1 className="font-heading text-3xl font-bold text-foreground mb-2">
-                Welcome Back
+                Welcome Home
               </h1>
               <p className="text-muted-foreground mb-8">
                 Sign in to your Eventix account
