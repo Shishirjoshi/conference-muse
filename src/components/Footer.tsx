@@ -193,7 +193,7 @@ const Footer = () => {
               </Link>
               <span className="text-border">•</span>
               <a href="/#contact" onClick={handleContactClick} className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
-                Contact Us
+                Contact
               </a>
               <span className="text-border">•</span>
               <Link to="/uml-diagram" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
