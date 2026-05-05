@@ -180,8 +180,8 @@ const Footer = () => {
           </div>
 
           <div className="border-t border-border/30 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p className="text-xs text-muted-foreground font-medium">
-              Copyright © 2026 EventHub. All Rights Reserved.
+              <p className="text-xs text-muted-foreground font-medium">
+              Copyright © 2026 EventHub. All Rights Reserved
             </p>
             <div className="flex items-center gap-6">
               <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
