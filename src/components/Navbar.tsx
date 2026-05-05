@@ -15,7 +15,7 @@ const navLinks: NavLink[] = [
   { label: "Home", to: "/" },
   { label: "Events", to: "/events" },
   { label: "Dashboard", to: "/dashboard", protected: true },
-  { label: "Admin Panel", to: "/organizer-dashboard", protected: true, adminOnly: true },
+  { label: "Admin Hub", to: "/organizer-dashboard", protected: true, adminOnly: true },
 ];
 
 const Navbar = () => {
