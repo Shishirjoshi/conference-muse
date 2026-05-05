@@ -185,7 +185,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-6">
               <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
-                Privacy Policy
+                Privacy
               </Link>
               <span className="text-border">•</span>
               <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
