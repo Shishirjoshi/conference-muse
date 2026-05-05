@@ -42,7 +42,7 @@ const Login = () => {
             className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={16} />
-            Back to Home
+            Back Home
           </button>
 
           <div className="rounded-xl border border-border bg-card p-8 shadow-card sm:p-10">
