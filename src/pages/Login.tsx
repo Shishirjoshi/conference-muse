@@ -128,7 +128,7 @@ const Login = () => {
             {/* Demo Credentials */}
             <div className="mt-8 pt-6 border-t border-border">
               <p className="text-xs text-muted-foreground text-center mb-4 font-medium">
-                Demo Administrator Account
+                Demo Admin Account
               </p>
               <div className="space-y-2 p-4 rounded bg-muted/30 text-xs">
                 <p className="text-muted-foreground">
