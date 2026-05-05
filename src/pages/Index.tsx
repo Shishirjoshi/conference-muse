@@ -156,7 +156,7 @@ const Index = () => {
             </div>
 
             <div className="glass rounded-2xl p-8 mb-12 max-w-2xl mx-auto shadow-lg border border-border/50">
-              <h3 className="text-xl font-semibold text-foreground mb-4">Upcoming Major Conference</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">Upcoming Main Conference</h3>
               <div className="flex justify-center items-center gap-3 text-lg text-muted-foreground font-semibold mb-2">
                 <Clock size={20} className="text-primary" />
                 <span className="font-mono text-2xl font-bold text-primary tracking-wide">
