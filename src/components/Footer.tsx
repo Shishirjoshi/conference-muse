@@ -167,7 +167,7 @@ const Footer = () => {
 
             {/* UML Diagram */}
             <div>
-              <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Project Docs</h4>
+              <h4 className="font-heading font-bold text-foreground mb-6 text-lg">Project Guide</h4>
               <div className="rounded-xl border border-border/50 bg-muted/20 p-4 space-y-3">
                 <p className="text-sm text-muted-foreground font-medium leading-relaxed">
                   Explore architecture diagrams for this project including component, class, and sequence UML views.
