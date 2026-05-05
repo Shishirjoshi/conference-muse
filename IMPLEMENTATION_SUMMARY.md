@@ -10,7 +10,7 @@ A complete restricted authentication system has been implemented for the EventHu
 - Password hashing with bcrypt
 - Token-based sessions
 
-**Status:** ✅ Complete and Ready to Use
+**Status:** ✅ Ready to Use
 
 ---
 
