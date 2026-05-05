@@ -33,7 +33,7 @@ const Events = () => {
             All Sessions
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Browse and filter events that match your interests
+            Browse and filter sessions that match your interests
           </p>
         </div>
 
