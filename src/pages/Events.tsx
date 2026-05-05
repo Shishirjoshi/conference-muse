@@ -57,7 +57,7 @@ const Events = () => {
 
               {/* Category */}
               <div>
-                <label className="text-sm font-semibold text-foreground mb-6 block">Filter by Category</label>
+                <label className="text-sm font-semibold text-foreground mb-6 block">Filter by Topic</label>
                 <div className="flex flex-wrap gap-3">
                   {categories.map((cat) => (
                     <Button
