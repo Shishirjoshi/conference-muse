@@ -95,7 +95,7 @@ const Navbar = () => {
                 size="sm"
                 className="rounded-lg px-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg font-semibold text-white"
               >
-                Sign In
+                Log In
               </Button>
             </Link>
           )}
