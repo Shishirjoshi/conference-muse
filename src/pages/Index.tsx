@@ -252,7 +252,7 @@ const Index = () => {
 
             <div className="grid lg:grid-cols-5 gap-8 items-start">
               <div className="lg:col-span-3 rounded-xl border border-border bg-background shadow-card p-6 md:p-8">
-                <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">Send A Message</h3>
+                <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">Send a Note</h3>
                 <form className="space-y-5" onSubmit={handleContactSubmit}>
                   <div>
                     <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-2">Name</label>
