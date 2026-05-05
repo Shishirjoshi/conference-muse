@@ -98,7 +98,7 @@ const Events = () => {
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-32 text-center">
                 <Search size={64} className="text-muted-foreground/30 mb-6" />
-                <p className="text-2xl font-semibold text-foreground mb-2">No events found</p>
+                <p className="text-2xl font-semibold text-foreground mb-2">No sessions found</p>
                 <p className="text-lg text-muted-foreground">Try adjusting your filters or search terms</p>
               </div>
             ) : (
