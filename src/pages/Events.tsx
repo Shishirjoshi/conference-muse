@@ -75,7 +75,7 @@ const Events = () => {
 
               {/* Mode */}
               <div>
-                <label className="text-sm font-semibold text-foreground mb-6 block">Event Format</label>
+                <label className="text-sm font-semibold text-foreground mb-6 block">Event Mode</label>
                 <div className="flex flex-wrap gap-3">
                   {modes.map((mode) => (
                     <Button
