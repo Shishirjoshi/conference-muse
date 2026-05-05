@@ -44,7 +44,7 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-heading text-xl font-bold text-primary">EventHub</span>
-            <span className="text-xs font-semibold text-muted-foreground">Professional Events</span>
+            <span className="text-xs font-semibold text-muted-foreground">Live Events</span>
           </div>
         </Link>
 
