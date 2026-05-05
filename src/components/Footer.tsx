@@ -189,7 +189,7 @@ const Footer = () => {
               </Link>
               <span className="text-border">•</span>
               <Link to="#" className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
-                Terms of Service
+                Terms
               </Link>
               <span className="text-border">•</span>
               <a href="/#contact" onClick={handleContactClick} className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium">
